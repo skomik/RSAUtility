@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'RSAMessenger' target in the 'RSAMessenger' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

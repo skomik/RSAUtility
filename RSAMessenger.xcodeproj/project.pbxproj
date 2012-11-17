@@ -1,0 +1,302 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F9ECC9F41657A8ED00D3CC84 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ECC9F31657A8ED00D3CC84 /* Cocoa.framework */; };
+		F9ECC9FE1657A8ED00D3CC84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9ECC9FC1657A8ED00D3CC84 /* InfoPlist.strings */; };
+		F9ECCA001657A8ED00D3CC84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9ECC9FF1657A8ED00D3CC84 /* main.m */; };
+		F9ECCA041657A8ED00D3CC84 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F9ECCA021657A8ED00D3CC84 /* Credits.rtf */; };
+		F9ECCA071657A8ED00D3CC84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9ECCA061657A8ED00D3CC84 /* AppDelegate.m */; };
+		F9ECCA0A1657A8ED00D3CC84 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9ECCA081657A8ED00D3CC84 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F9ECC9EF1657A8ED00D3CC84 /* RSAMessenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSAMessenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9ECC9F31657A8ED00D3CC84 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		F9ECC9F61657A8ED00D3CC84 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		F9ECC9F71657A8ED00D3CC84 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F9ECC9F81657A8ED00D3CC84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F9ECC9FB1657A8ED00D3CC84 /* RSAMessenger-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RSAMessenger-Info.plist"; sourceTree = "<group>"; };
+		F9ECC9FD1657A8ED00D3CC84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F9ECC9FF1657A8ED00D3CC84 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F9ECCA011657A8ED00D3CC84 /* RSAMessenger-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSAMessenger-Prefix.pch"; sourceTree = "<group>"; };
+		F9ECCA031657A8ED00D3CC84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		F9ECCA051657A8ED00D3CC84 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F9ECCA061657A8ED00D3CC84 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F9ECCA091657A8ED00D3CC84 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F9ECC9EC1657A8ED00D3CC84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9ECC9F41657A8ED00D3CC84 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F9ECC9E41657A8ED00D3CC84 = {
+			isa = PBXGroup;
+			children = (
+				F9ECC9F91657A8ED00D3CC84 /* RSAMessenger */,
+				F9ECC9F21657A8ED00D3CC84 /* Frameworks */,
+				F9ECC9F01657A8ED00D3CC84 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F9ECC9F01657A8ED00D3CC84 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F9ECC9EF1657A8ED00D3CC84 /* RSAMessenger.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F9ECC9F21657A8ED00D3CC84 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9ECC9F31657A8ED00D3CC84 /* Cocoa.framework */,
+				F9ECC9F51657A8ED00D3CC84 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F9ECC9F51657A8ED00D3CC84 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9ECC9F61657A8ED00D3CC84 /* AppKit.framework */,
+				F9ECC9F71657A8ED00D3CC84 /* CoreData.framework */,
+				F9ECC9F81657A8ED00D3CC84 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		F9ECC9F91657A8ED00D3CC84 /* RSAMessenger */ = {
+			isa = PBXGroup;
+			children = (
+				F9ECCA051657A8ED00D3CC84 /* AppDelegate.h */,
+				F9ECCA061657A8ED00D3CC84 /* AppDelegate.m */,
+				F9ECCA081657A8ED00D3CC84 /* MainMenu.xib */,
+				F9ECC9FA1657A8ED00D3CC84 /* Supporting Files */,
+			);
+			path = RSAMessenger;
+			sourceTree = "<group>";
+		};
+		F9ECC9FA1657A8ED00D3CC84 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F9ECC9FB1657A8ED00D3CC84 /* RSAMessenger-Info.plist */,
+				F9ECC9FC1657A8ED00D3CC84 /* InfoPlist.strings */,
+				F9ECC9FF1657A8ED00D3CC84 /* main.m */,
+				F9ECCA011657A8ED00D3CC84 /* RSAMessenger-Prefix.pch */,
+				F9ECCA021657A8ED00D3CC84 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F9ECC9EE1657A8ED00D3CC84 /* RSAMessenger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9ECCA0D1657A8ED00D3CC84 /* Build configuration list for PBXNativeTarget "RSAMessenger" */;
+			buildPhases = (
+				F9ECC9EB1657A8ED00D3CC84 /* Sources */,
+				F9ECC9EC1657A8ED00D3CC84 /* Frameworks */,
+				F9ECC9ED1657A8ED00D3CC84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RSAMessenger;
+			productName = RSAMessenger;
+			productReference = F9ECC9EF1657A8ED00D3CC84 /* RSAMessenger.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F9ECC9E61657A8ED00D3CC84 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = skomik;
+			};
+			buildConfigurationList = F9ECC9E91657A8ED00D3CC84 /* Build configuration list for PBXProject "RSAMessenger" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F9ECC9E41657A8ED00D3CC84;
+			productRefGroup = F9ECC9F01657A8ED00D3CC84 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F9ECC9EE1657A8ED00D3CC84 /* RSAMessenger */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F9ECC9ED1657A8ED00D3CC84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9ECC9FE1657A8ED00D3CC84 /* InfoPlist.strings in Resources */,
+				F9ECCA041657A8ED00D3CC84 /* Credits.rtf in Resources */,
+				F9ECCA0A1657A8ED00D3CC84 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F9ECC9EB1657A8ED00D3CC84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9ECCA001657A8ED00D3CC84 /* main.m in Sources */,
+				F9ECCA071657A8ED00D3CC84 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F9ECC9FC1657A8ED00D3CC84 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F9ECC9FD1657A8ED00D3CC84 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F9ECCA021657A8ED00D3CC84 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F9ECCA031657A8ED00D3CC84 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		F9ECCA081657A8ED00D3CC84 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F9ECCA091657A8ED00D3CC84 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F9ECCA0B1657A8ED00D3CC84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F9ECCA0C1657A8ED00D3CC84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F9ECCA0E1657A8ED00D3CC84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RSAMessenger/RSAMessenger-Prefix.pch";
+				INFOPLIST_FILE = "RSAMessenger/RSAMessenger-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F9ECCA0F1657A8ED00D3CC84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RSAMessenger/RSAMessenger-Prefix.pch";
+				INFOPLIST_FILE = "RSAMessenger/RSAMessenger-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F9ECC9E91657A8ED00D3CC84 /* Build configuration list for PBXProject "RSAMessenger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9ECCA0B1657A8ED00D3CC84 /* Debug */,
+				F9ECCA0C1657A8ED00D3CC84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F9ECCA0D1657A8ED00D3CC84 /* Build configuration list for PBXNativeTarget "RSAMessenger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9ECCA0E1657A8ED00D3CC84 /* Debug */,
+				F9ECCA0F1657A8ED00D3CC84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F9ECC9E61657A8ED00D3CC84 /* Project object */;
+}

@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "RSAKeyPair.h"
+#import "MainWindowController.h"
 
 @implementation AppDelegate
 
@@ -16,13 +16,30 @@
     [super dealloc];
 }
 
+-(IBAction)newDocument:(id)sender
+{
+	if (mainWindowController == NULL)
+		mainWindowController = [[MainWindowController alloc] initWithWindowNibName:@"MainWindowController"];
+	
+	[mainWindowController showWindow:self];
+}
+
+-(BOOL)validateMenuItem:(NSMenuItem*)theMenuItem
+{
+    BOOL enable = [self respondsToSelector:[theMenuItem action]];
+    
+    // disable "New" if the window is already up
+	if ([theMenuItem action] == @selector(newDocument:))
+	{
+		if ([[mainWindowController window] isKeyWindow])
+			enable = NO;
+	}
+	return enable;
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
-    
-    RSAKeyPair* pair = [RSAKeyPair randomPairWithLength:1024];
-    
-    NSLog(@"Key pair: %@", pair);
+    [self newDocument:self];
 }
 
 @end

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F939F074165972A20028CAC3 /* MainWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F939F072165972A20028CAC3 /* MainWindowController.mm */; };
+		F939F075165972A20028CAC3 /* MainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F939F073165972A20028CAC3 /* MainWindowController.xib */; };
+		F939F07E165974410028CAC3 /* GenerateViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F939F07C165974410028CAC3 /* GenerateViewController.mm */; };
+		F939F07F165974410028CAC3 /* GenerateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F939F07D165974410028CAC3 /* GenerateViewController.xib */; };
+		F939F083165981340028CAC3 /* EncryptViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F939F081165981340028CAC3 /* EncryptViewController.mm */; };
+		F939F084165981340028CAC3 /* EncryptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F939F082165981340028CAC3 /* EncryptViewController.xib */; };
+		F939F088165981400028CAC3 /* DecryptViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F939F0861659813F0028CAC3 /* DecryptViewController.mm */; };
+		F939F089165981400028CAC3 /* DecryptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F939F087165981400028CAC3 /* DecryptViewController.xib */; };
 		F9ECC9F41657A8ED00D3CC84 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ECC9F31657A8ED00D3CC84 /* Cocoa.framework */; };
 		F9ECC9FE1657A8ED00D3CC84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9ECC9FC1657A8ED00D3CC84 /* InfoPlist.strings */; };
 		F9ECCA001657A8ED00D3CC84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9ECC9FF1657A8ED00D3CC84 /* main.m */; };
@@ -21,6 +29,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F939F071165972A20028CAC3 /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindowController.h; sourceTree = "<group>"; };
+		F939F072165972A20028CAC3 /* MainWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainWindowController.mm; sourceTree = "<group>"; };
+		F939F073165972A20028CAC3 /* MainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindowController.xib; sourceTree = "<group>"; };
+		F939F07B165974410028CAC3 /* GenerateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateViewController.h; sourceTree = "<group>"; };
+		F939F07C165974410028CAC3 /* GenerateViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GenerateViewController.mm; sourceTree = "<group>"; };
+		F939F07D165974410028CAC3 /* GenerateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenerateViewController.xib; sourceTree = "<group>"; };
+		F939F080165981340028CAC3 /* EncryptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncryptViewController.h; sourceTree = "<group>"; };
+		F939F081165981340028CAC3 /* EncryptViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EncryptViewController.mm; sourceTree = "<group>"; };
+		F939F082165981340028CAC3 /* EncryptViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EncryptViewController.xib; sourceTree = "<group>"; };
+		F939F0851659813F0028CAC3 /* DecryptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecryptViewController.h; sourceTree = "<group>"; };
+		F939F0861659813F0028CAC3 /* DecryptViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DecryptViewController.mm; sourceTree = "<group>"; };
+		F939F087165981400028CAC3 /* DecryptViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DecryptViewController.xib; sourceTree = "<group>"; };
 		F9ECC9EF1657A8ED00D3CC84 /* RSAMessenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSAMessenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9ECC9F31657A8ED00D3CC84 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F9ECC9F61657A8ED00D3CC84 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -60,6 +80,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F939F06916596B020028CAC3 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F939F0701659726A0028CAC3 /* Controllers */,
+				F9ECCA1B1657B22600D3CC84 /* Helper.h */,
+				F9ECCA1C1657B22600D3CC84 /* Helper.mm */,
+				F9ECCA181657AAC100D3CC84 /* RSAKey.h */,
+				F9ECCA191657AAC100D3CC84 /* RSAKey.mm */,
+				F9ECCA221657B77000D3CC84 /* RSAKeyPair.h */,
+				F9ECCA231657B77000D3CC84 /* RSAKeyPair.mm */,
+				F9ECCA051657A8ED00D3CC84 /* AppDelegate.h */,
+				F9ECCA061657A8ED00D3CC84 /* AppDelegate.mm */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		F939F06B16596B1E0028CAC3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F939F087165981400028CAC3 /* DecryptViewController.xib */,
+				F939F082165981340028CAC3 /* EncryptViewController.xib */,
+				F939F07D165974410028CAC3 /* GenerateViewController.xib */,
+				F9ECCA081657A8ED00D3CC84 /* MainMenu.xib */,
+				F939F073165972A20028CAC3 /* MainWindowController.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F939F0701659726A0028CAC3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F939F0851659813F0028CAC3 /* DecryptViewController.h */,
+				F939F0861659813F0028CAC3 /* DecryptViewController.mm */,
+				F939F080165981340028CAC3 /* EncryptViewController.h */,
+				F939F081165981340028CAC3 /* EncryptViewController.mm */,
+				F939F07B165974410028CAC3 /* GenerateViewController.h */,
+				F939F07C165974410028CAC3 /* GenerateViewController.mm */,
+				F939F071165972A20028CAC3 /* MainWindowController.h */,
+				F939F072165972A20028CAC3 /* MainWindowController.mm */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		F9ECC9E41657A8ED00D3CC84 = {
 			isa = PBXGroup;
 			children = (
@@ -99,16 +162,9 @@
 		F9ECC9F91657A8ED00D3CC84 /* RSAMessenger */ = {
 			isa = PBXGroup;
 			children = (
-				F9ECCA1B1657B22600D3CC84 /* Helper.h */,
-				F9ECCA1C1657B22600D3CC84 /* Helper.mm */,
-				F9ECCA181657AAC100D3CC84 /* RSAKey.h */,
-				F9ECCA191657AAC100D3CC84 /* RSAKey.mm */,
-				F9ECCA221657B77000D3CC84 /* RSAKeyPair.h */,
-				F9ECCA231657B77000D3CC84 /* RSAKeyPair.mm */,
-				F9ECCA051657A8ED00D3CC84 /* AppDelegate.h */,
-				F9ECCA061657A8ED00D3CC84 /* AppDelegate.mm */,
-				F9ECCA081657A8ED00D3CC84 /* MainMenu.xib */,
-				F9ECCA101657AA7400D3CC84 /* libs */,
+				F9ECCA101657AA7400D3CC84 /* Libs */,
+				F939F06916596B020028CAC3 /* Sources */,
+				F939F06B16596B1E0028CAC3 /* Resources */,
 				F9ECC9FA1657A8ED00D3CC84 /* Supporting Files */,
 			);
 			path = RSAMessenger;
@@ -126,11 +182,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F9ECCA101657AA7400D3CC84 /* libs */ = {
+		F9ECCA101657AA7400D3CC84 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
 				F9ECCA111657AA7400D3CC84 /* gmp */,
 			);
+			name = Libs;
 			path = libs;
 			sourceTree = "<group>";
 		};
@@ -199,6 +256,10 @@
 				F9ECC9FE1657A8ED00D3CC84 /* InfoPlist.strings in Resources */,
 				F9ECCA041657A8ED00D3CC84 /* Credits.rtf in Resources */,
 				F9ECCA0A1657A8ED00D3CC84 /* MainMenu.xib in Resources */,
+				F939F075165972A20028CAC3 /* MainWindowController.xib in Resources */,
+				F939F07F165974410028CAC3 /* GenerateViewController.xib in Resources */,
+				F939F084165981340028CAC3 /* EncryptViewController.xib in Resources */,
+				F939F089165981400028CAC3 /* DecryptViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +275,10 @@
 				F9ECCA1A1657AAC100D3CC84 /* RSAKey.mm in Sources */,
 				F9ECCA1D1657B22700D3CC84 /* Helper.mm in Sources */,
 				F9ECCA241657B77000D3CC84 /* RSAKeyPair.mm in Sources */,
+				F939F074165972A20028CAC3 /* MainWindowController.mm in Sources */,
+				F939F07E165974410028CAC3 /* GenerateViewController.mm in Sources */,
+				F939F083165981340028CAC3 /* EncryptViewController.mm in Sources */,
+				F939F088165981400028CAC3 /* DecryptViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "RSAKey.h"
 
+#define RSA_LENGTH 1024
+
 @interface RSAKeyPair : NSObject
 {
     RSAKey* _publicKey;
@@ -22,5 +24,7 @@
 
 - (id)initRandomWithLength:(int)length;
 - (id)initFromFile:(NSURL*)filePath;
+
+- (void)saveToFile:(NSURL*)filePath;
 
 @end

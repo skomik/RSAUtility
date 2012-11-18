@@ -114,6 +114,16 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d)
     }
     
     mpz_get_str(d_str,10,d);
+    
+    delete p_str;
+    delete q_str;
+    
+    mpz_clear(p);
+    mpz_clear(q);
+    mpz_clear(x);
+    mpz_clear(p_minus_1);
+    mpz_clear(q_minus_1);
+    mpz_clear(gcd);
 }
 
 @implementation RSAKeyPair
@@ -149,6 +159,10 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d)
         
         _publicKey = [[RSAKey alloc] initWithGMPKey:n andE:e];
         _privateKey = [[RSAKey alloc] initWithGMPKey:d andE:e];
+        
+        mpz_clear(e);
+        mpz_clear(n);
+        mpz_clear(d);
     }
     
     return self;

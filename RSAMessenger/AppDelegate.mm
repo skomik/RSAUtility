@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "RSAKeyPair.h"
 
 @implementation AppDelegate
 
@@ -18,6 +19,10 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+    
+    RSAKeyPair* pair = [RSAKeyPair randomPairWithLength:1024];
+    
+    NSLog(@"Key pair: %@", pair);
 }
 
 @end

@@ -11,8 +11,13 @@
 		F9ECC9FE1657A8ED00D3CC84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9ECC9FC1657A8ED00D3CC84 /* InfoPlist.strings */; };
 		F9ECCA001657A8ED00D3CC84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9ECC9FF1657A8ED00D3CC84 /* main.m */; };
 		F9ECCA041657A8ED00D3CC84 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F9ECCA021657A8ED00D3CC84 /* Credits.rtf */; };
-		F9ECCA071657A8ED00D3CC84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9ECCA061657A8ED00D3CC84 /* AppDelegate.m */; };
+		F9ECCA071657A8ED00D3CC84 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = F9ECCA061657A8ED00D3CC84 /* AppDelegate.mm */; };
 		F9ECCA0A1657A8ED00D3CC84 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9ECCA081657A8ED00D3CC84 /* MainMenu.xib */; };
+		F9ECCA161657AA7400D3CC84 /* libgmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ECCA141657AA7400D3CC84 /* libgmp.a */; };
+		F9ECCA171657AA7400D3CC84 /* libgmpxx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ECCA151657AA7400D3CC84 /* libgmpxx.a */; };
+		F9ECCA1A1657AAC100D3CC84 /* RSAKey.mm in Sources */ = {isa = PBXBuildFile; fileRef = F9ECCA191657AAC100D3CC84 /* RSAKey.mm */; };
+		F9ECCA1D1657B22700D3CC84 /* Helper.mm in Sources */ = {isa = PBXBuildFile; fileRef = F9ECCA1C1657B22600D3CC84 /* Helper.mm */; };
+		F9ECCA241657B77000D3CC84 /* RSAKeyPair.mm in Sources */ = {isa = PBXBuildFile; fileRef = F9ECCA231657B77000D3CC84 /* RSAKeyPair.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +32,18 @@
 		F9ECCA011657A8ED00D3CC84 /* RSAMessenger-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSAMessenger-Prefix.pch"; sourceTree = "<group>"; };
 		F9ECCA031657A8ED00D3CC84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		F9ECCA051657A8ED00D3CC84 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		F9ECCA061657A8ED00D3CC84 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F9ECCA061657A8ED00D3CC84 /* AppDelegate.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		F9ECCA091657A8ED00D3CC84 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		F9ECCA121657AA7400D3CC84 /* gmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gmp.h; sourceTree = "<group>"; };
+		F9ECCA131657AA7400D3CC84 /* gmpxx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gmpxx.h; sourceTree = "<group>"; };
+		F9ECCA141657AA7400D3CC84 /* libgmp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgmp.a; sourceTree = "<group>"; };
+		F9ECCA151657AA7400D3CC84 /* libgmpxx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgmpxx.a; sourceTree = "<group>"; };
+		F9ECCA181657AAC100D3CC84 /* RSAKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAKey.h; sourceTree = "<group>"; };
+		F9ECCA191657AAC100D3CC84 /* RSAKey.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = RSAKey.mm; sourceTree = "<group>"; };
+		F9ECCA1B1657B22600D3CC84 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
+		F9ECCA1C1657B22600D3CC84 /* Helper.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = Helper.mm; sourceTree = "<group>"; };
+		F9ECCA221657B77000D3CC84 /* RSAKeyPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAKeyPair.h; sourceTree = "<group>"; };
+		F9ECCA231657B77000D3CC84 /* RSAKeyPair.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RSAKeyPair.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +52,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9ECC9F41657A8ED00D3CC84 /* Cocoa.framework in Frameworks */,
+				F9ECCA161657AA7400D3CC84 /* libgmp.a in Frameworks */,
+				F9ECCA171657AA7400D3CC84 /* libgmpxx.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,9 +99,16 @@
 		F9ECC9F91657A8ED00D3CC84 /* RSAMessenger */ = {
 			isa = PBXGroup;
 			children = (
+				F9ECCA1B1657B22600D3CC84 /* Helper.h */,
+				F9ECCA1C1657B22600D3CC84 /* Helper.mm */,
+				F9ECCA181657AAC100D3CC84 /* RSAKey.h */,
+				F9ECCA191657AAC100D3CC84 /* RSAKey.mm */,
+				F9ECCA221657B77000D3CC84 /* RSAKeyPair.h */,
+				F9ECCA231657B77000D3CC84 /* RSAKeyPair.mm */,
 				F9ECCA051657A8ED00D3CC84 /* AppDelegate.h */,
-				F9ECCA061657A8ED00D3CC84 /* AppDelegate.m */,
+				F9ECCA061657A8ED00D3CC84 /* AppDelegate.mm */,
 				F9ECCA081657A8ED00D3CC84 /* MainMenu.xib */,
+				F9ECCA101657AA7400D3CC84 /* libs */,
 				F9ECC9FA1657A8ED00D3CC84 /* Supporting Files */,
 			);
 			path = RSAMessenger;
@@ -100,6 +124,25 @@
 				F9ECCA021657A8ED00D3CC84 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F9ECCA101657AA7400D3CC84 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				F9ECCA111657AA7400D3CC84 /* gmp */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		F9ECCA111657AA7400D3CC84 /* gmp */ = {
+			isa = PBXGroup;
+			children = (
+				F9ECCA121657AA7400D3CC84 /* gmp.h */,
+				F9ECCA131657AA7400D3CC84 /* gmpxx.h */,
+				F9ECCA141657AA7400D3CC84 /* libgmp.a */,
+				F9ECCA151657AA7400D3CC84 /* libgmpxx.a */,
+			);
+			path = gmp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,7 +210,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9ECCA001657A8ED00D3CC84 /* main.m in Sources */,
-				F9ECCA071657A8ED00D3CC84 /* AppDelegate.m in Sources */,
+				F9ECCA071657A8ED00D3CC84 /* AppDelegate.mm in Sources */,
+				F9ECCA1A1657AAC100D3CC84 /* RSAKey.mm in Sources */,
+				F9ECCA1D1657B22700D3CC84 /* Helper.mm in Sources */,
+				F9ECCA241657B77000D3CC84 /* RSAKeyPair.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +304,12 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RSAMessenger/RSAMessenger-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/RSAMessenger/libs/gmp\"";
 				INFOPLIST_FILE = "RSAMessenger/RSAMessenger-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/RSAMessenger/libs/gmp\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -270,7 +321,12 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RSAMessenger/RSAMessenger-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/RSAMessenger/libs/gmp\"";
 				INFOPLIST_FILE = "RSAMessenger/RSAMessenger-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/RSAMessenger/libs/gmp\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -295,6 +351,7 @@
 				F9ECCA0F1657A8ED00D3CC84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

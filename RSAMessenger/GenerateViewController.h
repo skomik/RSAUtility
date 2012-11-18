@@ -8,6 +8,19 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class RSAKeyPair;
+
 @interface GenerateViewController : NSViewController
+{
+    IBOutlet NSTextField *publicKey;
+    IBOutlet NSTextField *publicExponent;
+    IBOutlet NSTextField *privateKey;
+}
+
+@property (nonatomic, retain, setter = setRSAKeyPair:) RSAKeyPair* currentRSAKeyPair;
+
+- (IBAction)generatePressed:(id)sender;
+- (IBAction)savePressed:(id)sender;
+- (IBAction)loadPressed:(id)sender;
 
 @end

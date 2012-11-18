@@ -51,6 +51,16 @@
     return self;
 }
 
+- (NSString*)getExponentString
+{
+    return [NSString stringWithSTLString:_e->get_str()];
+}
+
+- (NSString*)getKeyString
+{
+    return [NSString stringWithSTLString:_key->get_str()];
+}
+
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"%@\n\te = %@\n\tkey = %@",

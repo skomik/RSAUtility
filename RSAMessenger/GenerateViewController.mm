@@ -15,17 +15,51 @@
 
 @implementation GenerateViewController
 
+@synthesize currentRSAKeyPair=_currentRSAKeyPair;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Initialization code here.
-        
-        RSAKeyPair *keyPair = [RSAKeyPair randomPairWithLength:RSA_LENGTH];
-        NSLog(@"%@", keyPair);
     }
     
     return self;
+}
+
+- (IBAction)generatePressed:(id)sender
+{
+    self.currentRSAKeyPair = [RSAKeyPair randomPairWithLength:RSA_LENGTH];
+}
+
+- (IBAction)savePressed:(id)sender
+{
+    
+}
+
+- (IBAction)loadPressed:(id)sender
+{
+    
+}
+
+- (void)setRSAKeyPair:(RSAKeyPair *)value;
+{
+    if (_currentRSAKeyPair)
+    {
+        [_currentRSAKeyPair release];
+        _currentRSAKeyPair = nil;
+    }
+    
+    _currentRSAKeyPair = [value retain];
+
+    [self updateView];
+}
+
+- (void)updateView
+{    
+    [publicKey setStringValue:[[self.currentRSAKeyPair publicKey] getKeyString]];
+    [publicExponent setStringValue:[[self.currentRSAKeyPair publicKey] getExponentString]];
+    [privateKey setStringValue:[[self.currentRSAKeyPair privateKey] getKeyString]];
 }
 
 @end

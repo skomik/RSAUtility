@@ -128,8 +128,8 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d)
 
 @implementation RSAKeyPair
 
-@synthesize publicKey;
-@synthesize privateKey;
+@synthesize publicKey=_publicKey;
+@synthesize privateKey=_privateKey;
 
 + (RSAKeyPair*)randomPairWithLength:(int)length
 {
@@ -182,6 +182,11 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d)
 {
     return [NSString stringWithFormat:@"%@\n Public: %@\n Private: %@",
             [super description], _publicKey, _privateKey];
+}
+
+- (void)saveToFile:(NSURL *)filePath
+{
+    //TODO: implement
 }
 
 @end

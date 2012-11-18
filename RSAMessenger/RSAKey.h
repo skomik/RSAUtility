@@ -19,6 +19,9 @@
 - (id)initWithGMPKey:(mpz_t)key andE:(mpz_t)e;
 - (id)initWithKey:(NSString*)key andE:(NSString*)e;
 
+- (NSString*)getExponentString;
+- (NSString*)getKeyString;
+
 - (NSString*)encryptString:(NSString*)string;
 - (NSString*)decryptString:(NSString*)string;
 

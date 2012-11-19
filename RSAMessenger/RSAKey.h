@@ -15,9 +15,11 @@
     mpz_class* _key;
 }
 
-- (id)initFromFile:(NSURL*)filePath;
-- (id)initWithGMPKey:(mpz_t)key andE:(mpz_t)e;
-- (id)initWithKey:(NSString*)key andE:(NSString*)e;
+- (id)initWithCoder:(NSCoder*)coder;
+- (id)initWithGMPKey:(mpz_t)key andExponent:(mpz_t)e;
+- (id)initWithKey:(NSString*)key andExponent:(NSString*)e;
+
+- (void)encodeWithCoder:(NSCoder*)coder;
 
 - (NSString*)getExponentString;
 - (NSString*)getKeyString;

@@ -8,6 +8,9 @@
 
 #import "RSAKeyPair.h"
 
+const NSString* kRSAKeyPair_publicKey = @"kRSAKeyPair_publicKey";
+const NSString* kRSAKeyPair_privateKey = @"kRSAKeyPair_privateKey";
+
 void RSA_initRandom()
 {
     time_t time_elapsed;
@@ -157,8 +160,8 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d)
         RSA_initRandom();
         RSA_generateKeyPair(length, e, n, d);
         
-        _publicKey = [[RSAKey alloc] initWithGMPKey:n andE:e];
-        _privateKey = [[RSAKey alloc] initWithGMPKey:d andE:e];
+        _publicKey = [[RSAKey alloc] initWithGMPKey:n andExponent:e];
+        _privateKey = [[RSAKey alloc] initWithGMPKey:d andExponent:e];
         
         mpz_clear(e);
         mpz_clear(n);
@@ -168,25 +171,27 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d)
     return self;
 }
 
-- (id)initFromFile:(NSURL*)filePath
+- (id)initWithCoder:(NSCoder*)coder
 {
     if (self = [super init])
     {
-        
+        _publicKey = [[coder decodeObjectForKey:(NSString*)kRSAKeyPair_publicKey] retain];
+        _privateKey = [[coder decodeObjectForKey:(NSString*)kRSAKeyPair_privateKey] retain];
     }
     
     return self;
+}
+
+- (void)encodeWithCoder:(NSCoder*)coder
+{
+    [coder encodeObject:_publicKey forKey:(NSString*)kRSAKeyPair_publicKey];
+    [coder encodeObject:_privateKey forKey:(NSString*)kRSAKeyPair_privateKey];
 }
 
 - (NSString*)description
 {
     return [NSString stringWithFormat:@"%@\n Public: %@\n Private: %@",
             [super description], _publicKey, _privateKey];
-}
-
-- (void)saveToFile:(NSURL *)filePath
-{
-    //TODO: implement
 }
 
 @end

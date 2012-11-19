@@ -23,8 +23,8 @@
 + (RSAKeyPair*)randomPairWithLength:(int)length;
 
 - (id)initRandomWithLength:(int)length;
-- (id)initFromFile:(NSURL*)filePath;
+- (id)initWithCoder:(NSCoder*)coder;
 
-- (void)saveToFile:(NSURL*)filePath;
+- (void)encodeWithCoder:(NSCoder*)coder;
 
 @end

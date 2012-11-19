@@ -11,4 +11,12 @@
 
 @interface NSString (CPlus)
 + (NSString*)stringWithSTLString:(std::string)stdString;
+- (std::string)getSTLString;
+@end
+
+@interface Helper : NSObject
+
++ (NSURL*)getWorkingDir;
++ (void)setWorkingDir:(NSURL*)value;
+
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F9345285165A58E300A5F90B /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F9345284165A58E300A5F90B /* icon.icns */; };
 		F939F074165972A20028CAC3 /* MainWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F939F072165972A20028CAC3 /* MainWindowController.mm */; };
 		F939F075165972A20028CAC3 /* MainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F939F073165972A20028CAC3 /* MainWindowController.xib */; };
 		F939F07E165974410028CAC3 /* GenerateViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F939F07C165974410028CAC3 /* GenerateViewController.mm */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F9345284165A58E300A5F90B /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../icon.icns; sourceTree = "<group>"; };
 		F939F071165972A20028CAC3 /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindowController.h; sourceTree = "<group>"; };
 		F939F072165972A20028CAC3 /* MainWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainWindowController.mm; sourceTree = "<group>"; };
 		F939F073165972A20028CAC3 /* MainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindowController.xib; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 		F939F06B16596B1E0028CAC3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F9345284165A58E300A5F90B /* icon.icns */,
 				F939F087165981400028CAC3 /* DecryptViewController.xib */,
 				F939F082165981340028CAC3 /* EncryptViewController.xib */,
 				F939F07D165974410028CAC3 /* GenerateViewController.xib */,
@@ -260,6 +263,7 @@
 				F939F07F165974410028CAC3 /* GenerateViewController.xib in Resources */,
 				F939F084165981340028CAC3 /* EncryptViewController.xib in Resources */,
 				F939F089165981400028CAC3 /* DecryptViewController.xib in Resources */,
+				F9345285165A58E300A5F90B /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

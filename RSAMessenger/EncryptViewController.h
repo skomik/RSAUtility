@@ -9,5 +9,13 @@
 #import <Cocoa/Cocoa.h>
 
 @interface EncryptViewController : NSViewController
+{
+    IBOutlet NSTextField *publicKeyText;
+    IBOutlet NSTextField *fileToEncryptText;
+}
+
+- (IBAction)publicKeyBrowsePressed:(id)sender;
+- (IBAction)fileToEncryptBrowsePressed:(id)sender;
+- (IBAction)encryptPressed:(id)sender;
 
 @end

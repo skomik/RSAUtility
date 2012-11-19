@@ -9,36 +9,36 @@
 #import "RSAKey.h"
 #import "Helper.h"
 
-const NSString* kRSAKey_e = @"kRSAKey_e";
 const NSString* kRSAKey_key = @"kRSAKey_key";
+const NSString* kRSAKey_magnitude = @"kRSAKey_magnitude";
 
 @implementation RSAKey
 
 - (void)dealloc
 {
-    delete _e;
     delete _key;
+    delete _magnitude;
     
     [super dealloc];
 }
 
-- (id)initWithGMPKey:(mpz_t)key andExponent:(mpz_t)e
+- (id)initWithGMPKey:(mpz_t)key andMagnitude:(__mpz_struct *)magnitude
 {
     if (self = [super init])
     {
-        _e = new mpz_class(e);
         _key = new mpz_class(key);
+        _magnitude = new mpz_class(magnitude);
     }
     
     return self;
 }
 
-- (id)initWithKey:(NSString *)key andExponent:(NSString *)e
+- (id)initWithKey:(NSString *)key andMagnitude:(NSString *)magnitude
 {
     if (self = [super init])
     {
-        _e = new mpz_class([e getSTLString]);
         _key = new mpz_class([key getSTLString]);
+        _magnitude = new mpz_class([magnitude getSTLString]);
     }
     
     return self;
@@ -46,23 +46,18 @@ const NSString* kRSAKey_key = @"kRSAKey_key";
 
 - (id)initWithCoder:(NSCoder*)coder
 {
-    NSString* exponent = [coder decodeObjectForKey:(NSString*)kRSAKey_e];
     NSString* key = [coder decodeObjectForKey:(NSString*)kRSAKey_key];
+    NSString* magnitude = [coder decodeObjectForKey:(NSString*)kRSAKey_magnitude];
     
-    self = [self initWithKey:key andExponent:exponent];
+    self = [self initWithKey:key andMagnitude:magnitude];
     
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder*)coder
 {
-    [coder encodeObject:[self getExponentString] forKey:(NSString*)kRSAKey_e];
     [coder encodeObject:[self getKeyString] forKey:(NSString*)kRSAKey_key];
-}
-
-- (NSString*)getExponentString
-{
-    return [NSString stringWithSTLString:_e->get_str()];
+    [coder encodeObject:[self getMagnitudeString] forKey:(NSString*)kRSAKey_magnitude];
 }
 
 - (NSString*)getKeyString
@@ -70,12 +65,17 @@ const NSString* kRSAKey_key = @"kRSAKey_key";
     return [NSString stringWithSTLString:_key->get_str()];
 }
 
+- (NSString*)getMagnitudeString
+{
+    return [NSString stringWithSTLString:_magnitude->get_str()];
+}
+
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"%@\n\te = %@\n\tkey = %@",
+    return [NSString stringWithFormat:@"%@\n\tkey = %@\n\tmagnitude = %@",
             [super description],
-            [NSString stringWithSTLString:_e->get_str()],
-            [NSString stringWithSTLString:_key->get_str()]];
+            [NSString stringWithSTLString:_key->get_str()],
+            [NSString stringWithSTLString:_magnitude->get_str()]];
 }
 
 - (NSString*)encryptString:(NSString*)string

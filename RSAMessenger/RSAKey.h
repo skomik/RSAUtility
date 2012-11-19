@@ -9,20 +9,23 @@
 #import <Foundation/Foundation.h>
 #import "libs/gmp/gmpxx.h"
 
+#define RSA_LENGTH 1024
+#define RSA_BLOCK_BYTES 100
+
 @interface RSAKey : NSObject
 {
-    mpz_class* _e;
     mpz_class* _key;
+    mpz_class* _magnitude;
 }
 
 - (id)initWithCoder:(NSCoder*)coder;
-- (id)initWithGMPKey:(mpz_t)key andExponent:(mpz_t)e;
-- (id)initWithKey:(NSString*)key andExponent:(NSString*)e;
+- (id)initWithGMPKey:(mpz_t)key andMagnitude:(mpz_t)magnitude;
+- (id)initWithKey:(NSString*)key andMagnitude:(NSString*)magnitude;
 
 - (void)encodeWithCoder:(NSCoder*)coder;
 
-- (NSString*)getExponentString;
 - (NSString*)getKeyString;
+- (NSString*)getMagnitudeString;
 
 - (NSString*)encryptString:(NSString*)string;
 - (NSString*)decryptString:(NSString*)string;

@@ -9,5 +9,13 @@
 #import <Cocoa/Cocoa.h>
 
 @interface DecryptViewController : NSViewController
+{
+    IBOutlet NSTextField *keyPairText;
+    IBOutlet NSTextField *fileToDecryptText;
+}
+
+- (IBAction)keyPairBrowsePressed:(id)sender;
+- (IBAction)fileToDecryptBrowsePressed:(id)sender;
+- (IBAction)decryptPressed:(id)sender;
 
 @end

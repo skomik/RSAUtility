@@ -160,8 +160,8 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d)
         RSA_initRandom();
         RSA_generateKeyPair(length, e, n, d);
         
-        _publicKey = [[RSAKey alloc] initWithGMPKey:n andExponent:e];
-        _privateKey = [[RSAKey alloc] initWithGMPKey:d andExponent:e];
+        _publicKey = [[RSAKey alloc] initWithGMPKey:e andMagnitude:n];
+        _privateKey = [[RSAKey alloc] initWithGMPKey:d andMagnitude:n];
         
         mpz_clear(e);
         mpz_clear(n);

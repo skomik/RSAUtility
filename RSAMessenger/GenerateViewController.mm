@@ -37,13 +37,7 @@
 {
     if (!self.currentRSAKeyPair)
     {
-        NSAlert* alert = [NSAlert alertWithMessageText:@"Empty Key"
-                                         defaultButton:@"OK"
-                                       alternateButton:nil
-                                           otherButton:nil
-                             informativeTextWithFormat:@"Press \"Generate\" button first"];
-        
-        [alert runModal];
+        [self showEmptyKeyAlert];
         return;
     }
     
@@ -82,6 +76,31 @@
      }];
 }
 
+- (IBAction)sharePressed:(id)sender
+{
+    if (!self.currentRSAKeyPair)
+    {
+        [self showEmptyKeyAlert];
+        return;
+    }
+    
+    NSSavePanel * savePanel = [NSSavePanel savePanel];
+    [savePanel setDirectoryURL:[Helper getWorkingDir]];
+    [savePanel setExtensionHidden:NO];
+    [savePanel setNameFieldStringValue:@"myRSAPublicKey.rsa-key"];
+    
+    [savePanel beginSheetModalForWindow:[[NSApplication sharedApplication] mainWindow]
+                      completionHandler:^(NSInteger result)
+     {
+         [Helper setWorkingDir:[savePanel directoryURL]];
+         [savePanel orderOut:self];
+         
+         if (result == NSFileHandlingPanelOKButton) {
+             [NSKeyedArchiver archiveRootObject:[self.currentRSAKeyPair publicKey] toFile:[[savePanel URL] path]];
+         }
+     }];
+}
+
 - (void)setRSAKeyPair:(RSAKeyPair *)value;
 {
     if (_currentRSAKeyPair)
@@ -95,10 +114,21 @@
     [self updateView];
 }
 
+- (void)showEmptyKeyAlert
+{
+    NSAlert* alert = [NSAlert alertWithMessageText:@"Empty Key"
+                                     defaultButton:@"OK"
+                                   alternateButton:nil
+                                       otherButton:nil
+                         informativeTextWithFormat:@"Generate key pair first or load it from file"];
+    
+    [alert runModal];
+}
+
 - (void)updateView
 {
-    NSString* publicKeyString = [[self.currentRSAKeyPair publicKey] getKeyString];
-    NSString* publicExponentString = [[self.currentRSAKeyPair publicKey] getExponentString];
+    NSString* publicKeyString = [[self.currentRSAKeyPair publicKey] getMagnitudeString];
+    NSString* publicExponentString = [[self.currentRSAKeyPair publicKey] getKeyString];
     NSString* privateKeyString = [[self.currentRSAKeyPair privateKey] getKeyString];
     
     [publicKey setStringValue:(publicKeyString) ? publicKeyString : @""];

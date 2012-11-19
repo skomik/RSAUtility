@@ -22,5 +22,6 @@
 - (IBAction)generatePressed:(id)sender;
 - (IBAction)savePressed:(id)sender;
 - (IBAction)loadPressed:(id)sender;
+- (IBAction)sharePressed:(id)sender;
 
 @end

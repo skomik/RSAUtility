@@ -7,6 +7,8 @@
 //
 
 #import "DecryptViewController.h"
+#import "RSAEncryptor.h"
+#import "RSAKeyPair.h"
 
 @interface DecryptViewController ()
 
@@ -24,6 +26,15 @@
     return self;
 }
 
+- (void)loadView
+{
+    [super loadView];
+    
+    //TODO: remove
+    [keyPairText setStringValue:@"/Users/skomik/Desktop/temp/myRSAKeys.rsa-key-pair"];
+    [fileToDecryptText setStringValue:@"/Users/skomik/Desktop/temp/tongue_03.png.rsa-encrypted"];
+}
+
 - (IBAction)keyPairBrowsePressed:(id)sender
 {
     
@@ -36,7 +47,16 @@
 
 - (IBAction)decryptPressed:(id)sender
 {
+    NSString *keyPath = [keyPairText stringValue];
+    NSString *filePath = [fileToDecryptText stringValue];
+    NSString *decryptedFilePath = [[filePath stringByReplacingOccurrencesOfString:@".rsa-encrypted" withString:@""] stringByAppendingString:@".rsa-decrypted"];
     
+    RSAKey *privateKey = [[NSKeyedUnarchiver unarchiveObjectWithFile:keyPath] privateKey];
+    
+    [RSAEncryptor decryptFile:[NSURL fileURLWithPath:filePath]
+                       toFile:[NSURL fileURLWithPath:decryptedFilePath]
+                      withKey:privateKey
+                     delegate:nil];
 }
 
 @end

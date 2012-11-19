@@ -8,11 +8,13 @@
 
 #import "RSAEncryptor.h"
 #import "RSAKey.h"
+#import "Helper.h"
 
 enum { MODE_ENCRYPT, MODE_DECRYPT };
 
 @interface RSAEncryptor()
 @property (nonatomic, assign) NSObject<RSAEncryptorDelegate>* delegate;
+@property (nonatomic, retain) RSAKey* rsaKey;
 @end
 
 @implementation RSAEncryptor
@@ -25,6 +27,7 @@ enum { MODE_ENCRYPT, MODE_DECRYPT };
                                                           output:encryptedFile];
     
     [encryptor setDelegate:delegate];
+    [encryptor setRsaKey:rsaKey];
     [encryptor startProcess];
 }
 
@@ -35,6 +38,7 @@ enum { MODE_ENCRYPT, MODE_DECRYPT };
                                                           output:decryptedFile];
     
     [encryptor setDelegate:delegate];
+    [encryptor setRsaKey:rsaKey];
     [encryptor startProcess];
 }
 
@@ -73,23 +77,61 @@ enum { MODE_ENCRYPT, MODE_DECRYPT };
     switch (eventCode)
     {
         case NSStreamEventHasBytesAvailable:
-        {            
-            uint8_t buf[RSA_BLOCK_BYTES_COUNT];
-            long len = 0;
-            len = [_inputStream read:buf maxLength:RSA_BLOCK_BYTES_COUNT];
-            if (len)
-            {
-                for (int i = 0; i < len; i++)
-                    printf("%c", buf[i]);
-                printf("\n");
-            }
+        {
+            NSUInteger keyLength = [[self.rsaKey getMagnitudeString] length];
             
-//            if (_processingMode == MODE_ENCRYPT)
-//            {
-//            }
-//            else if (_processingMode == MODE_DECRYPT)
-//            {
-//            }
+            if (_processingMode == MODE_ENCRYPT)
+            {
+                uint8_t buffer[RSA_BLOCK_BYTES_COUNT + 1];
+                long bytesReadCount = 0;
+                bytesReadCount = [_inputStream read:buffer maxLength:RSA_BLOCK_BYTES_COUNT];
+                
+                if (bytesReadCount)
+                {
+                    //making string out of read bytes
+                    buffer[bytesReadCount] = '\0';
+                    
+                    char* inputString = (char *)buffer;
+                    char outputString[keyLength];
+                    
+                    [self.rsaKey encryptString:inputString toString:outputString];
+                    
+                    for (unsigned long i = strlen(outputString); i < keyLength - 1; i++)
+                        outputString[i] = '$';
+                    outputString[keyLength - 1] = '\n';
+                    
+                    if ([_outputStream hasSpaceAvailable])
+                        [_outputStream write:(uint8_t*)outputString maxLength:keyLength];
+                }
+            }
+            else if (_processingMode == MODE_DECRYPT)
+            {
+                uint8_t buffer[keyLength + 1];
+                long bytesReadCount = 0;
+                bytesReadCount = [_inputStream read:buffer maxLength:keyLength];
+                
+                if (bytesReadCount)
+                {
+                    //making string out of read bytes
+                    long iterator = bytesReadCount;
+                    while (buffer[iterator] < '0' || buffer[iterator] > '9') { iterator--; }
+                    buffer[iterator+1] = '\0';
+                    
+                    char* inputString = (char*)buffer;
+                    char outputString[RSA_BLOCK_BYTES_COUNT + 1];
+                    
+                    printf("input: %s\n", inputString);
+                    
+                    [self.rsaKey decryptString:inputString toString:outputString];
+                    
+                    printf("output: %s\n", outputString);
+                    
+                    if ([_outputStream hasSpaceAvailable])
+                        [_outputStream write:(uint8_t*)outputString maxLength:strlen(outputString)];
+                }
+            }
+            else
+                assert(false);
             
             break;
         }

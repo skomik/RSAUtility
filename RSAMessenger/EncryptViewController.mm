@@ -31,7 +31,7 @@
     
     //TODO: remove
     [publicKeyText setStringValue:@"/Users/skomik/Desktop/temp/myRSAPublicKey.rsa-key"];
-    [fileToEncryptText setStringValue:@"/Users/skomik/Desktop/temp/super_meatboy.command"];
+    [fileToEncryptText setStringValue:@"/Users/skomik/Desktop/temp/tongue_03.png"];
 }
 
 - (IBAction)publicKeyBrowsePressed:(id)sender

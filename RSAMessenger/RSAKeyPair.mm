@@ -42,14 +42,14 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d)
     p_str[primeSize] = '\0';
     q_str[primeSize] = '\0';
     
-    mpz_set_str(p,p_str,2);
-    mpz_set_str(q,q_str,2);
+    mpz_set_str(p,p_str,BASE_2);
+    mpz_set_str(q,q_str,BASE_2);
     
     mpz_nextprime(p,p);
     mpz_nextprime(q,q);
     
-    mpz_get_str(p_str,10,p);
-    mpz_get_str(q_str,10,q);
+    mpz_get_str(p_str,BASE_10,p);
+    mpz_get_str(q_str,BASE_10,q);
     
     printf("Random Prime 'p' = %s\n",p_str);
     printf("Random Prime 'q' = %s\n",q_str);
@@ -116,7 +116,7 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d)
         RSA_generateKeyPair(length, e, n, d);
     }
     
-    mpz_get_str(d_str,10,d);
+    mpz_get_str(d_str,BASE_10,d);
     
     delete p_str;
     delete q_str;

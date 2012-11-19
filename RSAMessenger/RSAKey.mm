@@ -78,25 +78,4 @@ const NSString* kRSAKey_magnitude = @"kRSAKey_magnitude";
             [NSString stringWithSTLString:_magnitude->get_str()]];
 }
 
-- (NSString*)encryptString:(NSString*)string
-{
-    return @"";
-}
-
-- (NSString*)decryptString:(NSString*)string
-{
-    return @"";
-}
-
-- (void)encryptFile:(NSURL *)fileToEncrypt toFile:(NSURL *)encryptedFile
-{
-    
-}
-
-- (void)decryptFile:(NSURL *)fileToDecrypt toFile:(NSURL *)decryptedFile
-{
-    
-}
-
-
 @end

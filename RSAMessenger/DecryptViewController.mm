@@ -24,4 +24,19 @@
     return self;
 }
 
+- (IBAction)keyPairBrowsePressed:(id)sender
+{
+    
+}
+
+- (IBAction)fileToDecryptBrowsePressed:(id)sender
+{
+    
+}
+
+- (IBAction)decryptPressed:(id)sender
+{
+    
+}
+
 @end

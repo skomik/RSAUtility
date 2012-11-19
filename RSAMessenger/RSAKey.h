@@ -10,7 +10,7 @@
 #import "libs/gmp/gmpxx.h"
 
 #define RSA_LENGTH 1024
-#define RSA_BLOCK_BYTES 100
+#define RSA_BLOCK_BYTES_COUNT 10
 
 @interface RSAKey : NSObject
 {
@@ -26,11 +26,5 @@
 
 - (NSString*)getKeyString;
 - (NSString*)getMagnitudeString;
-
-- (NSString*)encryptString:(NSString*)string;
-- (NSString*)decryptString:(NSString*)string;
-
-- (void)encryptFile:(NSURL*)fileToEncrypt toFile:(NSURL*)encryptedFile;
-- (void)decryptFile:(NSURL*)fileToDecrypt toFile:(NSURL*)decryptedFile;
 
 @end

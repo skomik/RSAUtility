@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F9345285165A58E300A5F90B /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F9345284165A58E300A5F90B /* icon.icns */; };
+		F9345293165A7DC200A5F90B /* RSAEncryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = F9345292165A7DC200A5F90B /* RSAEncryptor.mm */; };
 		F939F074165972A20028CAC3 /* MainWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F939F072165972A20028CAC3 /* MainWindowController.mm */; };
 		F939F075165972A20028CAC3 /* MainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F939F073165972A20028CAC3 /* MainWindowController.xib */; };
 		F939F07E165974410028CAC3 /* GenerateViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F939F07C165974410028CAC3 /* GenerateViewController.mm */; };
@@ -31,6 +32,8 @@
 
 /* Begin PBXFileReference section */
 		F9345284165A58E300A5F90B /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../icon.icns; sourceTree = "<group>"; };
+		F9345291165A7DC200A5F90B /* RSAEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor.h; sourceTree = "<group>"; };
+		F9345292165A7DC200A5F90B /* RSAEncryptor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RSAEncryptor.mm; sourceTree = "<group>"; };
 		F939F071165972A20028CAC3 /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindowController.h; sourceTree = "<group>"; };
 		F939F072165972A20028CAC3 /* MainWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainWindowController.mm; sourceTree = "<group>"; };
 		F939F073165972A20028CAC3 /* MainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindowController.xib; sourceTree = "<group>"; };
@@ -88,6 +91,8 @@
 				F939F0701659726A0028CAC3 /* Controllers */,
 				F9ECCA1B1657B22600D3CC84 /* Helper.h */,
 				F9ECCA1C1657B22600D3CC84 /* Helper.mm */,
+				F9345291165A7DC200A5F90B /* RSAEncryptor.h */,
+				F9345292165A7DC200A5F90B /* RSAEncryptor.mm */,
 				F9ECCA181657AAC100D3CC84 /* RSAKey.h */,
 				F9ECCA191657AAC100D3CC84 /* RSAKey.mm */,
 				F9ECCA221657B77000D3CC84 /* RSAKeyPair.h */,
@@ -283,6 +288,7 @@
 				F939F07E165974410028CAC3 /* GenerateViewController.mm in Sources */,
 				F939F083165981340028CAC3 /* EncryptViewController.mm in Sources */,
 				F939F088165981400028CAC3 /* DecryptViewController.mm in Sources */,
+				F9345293165A7DC200A5F90B /* RSAEncryptor.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

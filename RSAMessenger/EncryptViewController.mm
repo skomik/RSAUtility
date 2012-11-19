@@ -7,7 +7,7 @@
 //
 
 #import "EncryptViewController.h"
-#import "RSAKey.h"
+#import "RSAEncryptor.h"
 
 @interface EncryptViewController ()
 
@@ -51,7 +51,11 @@
     NSString *encryptedFilePath = [filePath stringByAppendingString:@".rsa-encrypted"];
     
     RSAKey *publicKey = [NSKeyedUnarchiver unarchiveObjectWithFile:keyPath];
-    [publicKey encryptFile:[NSURL fileURLWithPath:filePath] toFile:[NSURL fileURLWithPath:encryptedFilePath]];
+    
+    [RSAEncryptor encryptFile:[NSURL fileURLWithPath:filePath]
+                       toFile:[NSURL fileURLWithPath:encryptedFilePath]
+                      withKey:publicKey
+                     delegate:nil];
 }
 
 @end

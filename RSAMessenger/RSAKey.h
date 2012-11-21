@@ -17,6 +17,8 @@
 #define RSA_BLOCK_BYTES_COUNT (RSA_LENGTH/8 - 1)
 #define RSA_BLOCK_READ_BYTES_COUNT RSA_BLOCK_BYTES_COUNT - 1
 
+enum { MODE_ENCRYPT, MODE_DECRYPT };
+
 @interface RSAKey : NSObject
 {
     mpz_class* _key;
@@ -27,8 +29,7 @@
 - (id)initWithGMPKey:(mpz_t)key andMagnitude:(mpz_t)magnitude;
 - (id)initWithKey:(NSString*)key andMagnitude:(NSString*)magnitude;
 
-- (int)encryptBytes:(char*)bytesToEnrypt length:(long)length toBytes:(char*)encryptedBytes;
-- (int)decryptBytes:(char*)bytesToDerypt length:(long)length toBytes:(char*)decryptedBytes;
+- (int)processBytes:(char *)bytesToProcess length:(long)length toBytes:(char *)processedBytes mode:(int)mode;
 
 - (void)encodeWithCoder:(NSCoder*)coder;
 

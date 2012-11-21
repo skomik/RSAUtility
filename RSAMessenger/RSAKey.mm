@@ -61,56 +61,25 @@ void logNumber(mpz_t number)
     return self;
 }
 
-- (int)encryptBytes:(char *)bytesToEnrypt length:(long)length toBytes:(char *)encryptedBytes
+- (int)processBytes:(char *)bytesToProcess length:(long)length toBytes:(char *)processedBytes mode:(int)mode
 {
-    mpz_t message, cipher;
+    bool encrypting = mode == MODE_ENCRYPT;
     
-    mpz_init(message);
-    mpz_init(cipher);
+    mpz_t inputNumber, outputNumber;
     
-    mpz_import(message, length, 1, sizeof(bytesToEnrypt[0]), 0, 0, bytesToEnrypt);
-    mpz_powm(cipher, message, _key->get_mpz_t(), _magnitude->get_mpz_t());
+    mpz_init(inputNumber);
+    mpz_init(outputNumber);
     
-#ifdef DEBUG
-    printf("encrypting message:\n");
-    logNumber(message);
-    printf("cipher:\n");
-    logNumber(cipher);
-#endif
+    mpz_import(inputNumber, length, 1, sizeof(bytesToProcess[0]), 0, 0, bytesToProcess);
+    mpz_powm(outputNumber, inputNumber, _key->get_mpz_t(), _magnitude->get_mpz_t());
     
-    int exportLength = (mpz_sizeinbase(cipher, BASE_2) + 8 - 1)/8;
-    int offset = RSA_BLOCK_SIZE - exportLength;
+    int maxLength = encrypting ? RSA_BLOCK_SIZE : RSA_BLOCK_BYTES_COUNT;
+    int exportLength = (mpz_sizeinbase(outputNumber, BASE_2) + 8 - 1)/8;
+    int offset = maxLength - exportLength;
     
     assert(offset >= 0);
     
-    mpz_export(encryptedBytes + offset, NULL, 1, sizeof(char), 0, 0, cipher);
-    
-    return exportLength + offset;
-}
-
-- (int)decryptBytes:(char *)bytesToDerypt length:(long)length toBytes:(char *)decryptedBytes
-{
-    mpz_t message, cipher;
-    
-    mpz_init(message);
-    mpz_init(cipher);
-    
-    mpz_import(cipher, length, 1, sizeof(bytesToDerypt[0]), 0, 0, bytesToDerypt);
-    mpz_powm(message, cipher, _key->get_mpz_t(), _magnitude->get_mpz_t());
-    
-#ifdef DEBUG
-    printf("decrypting message:\n");
-    logNumber(message);
-    printf("cipher:\n");
-    logNumber(cipher);
-#endif
-    
-    int exportLength = (mpz_sizeinbase(message, BASE_2) + 8 - 1)/8;
-    int offset = RSA_BLOCK_BYTES_COUNT - (mpz_sizeinbase(message, BASE_2) + 8 - 1)/8;
-    
-    assert(offset >= 0);
-    
-    mpz_export(decryptedBytes + offset, NULL, 1, sizeof(char), 0, 0, message);
+    mpz_export(processedBytes + offset, NULL, 1, sizeof(char), 0, 0, outputNumber);
     
     return exportLength + offset;
 }

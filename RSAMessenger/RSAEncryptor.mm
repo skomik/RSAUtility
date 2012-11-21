@@ -10,8 +10,6 @@
 #import "RSAKey.h"
 #import "Helper.h"
 
-enum { MODE_ENCRYPT, MODE_DECRYPT };
-
 @interface RSAEncryptor()
 @property (nonatomic, assign) NSObject<RSAEncryptorDelegate>* delegate;
 @property (nonatomic, retain) RSAKey* rsaKey;
@@ -77,53 +75,46 @@ enum { MODE_ENCRYPT, MODE_DECRYPT };
     switch (eventCode)
     {
         case NSStreamEventHasBytesAvailable:
-        {            
-            if (_processingMode == MODE_ENCRYPT)
+        {                            
+            bool encrypting = _processingMode == MODE_ENCRYPT;
+            
+            int bufferSize = encrypting ? RSA_BLOCK_BYTES_COUNT : RSA_BLOCK_SIZE;
+            int outputSize = encrypting ? RSA_BLOCK_SIZE : RSA_BLOCK_BYTES_COUNT;
+            int readCount = encrypting ? RSA_BLOCK_READ_BYTES_COUNT : RSA_BLOCK_SIZE;
+            
+            uint8_t buffer[bufferSize];
+            memset(buffer, 0, sizeof(buffer));
+            
+            long bytesReadCount = 0;
+            bytesReadCount = [_inputStream read:buffer maxLength:readCount];
+            
+            if (bytesReadCount)
             {
-                uint8_t buffer[RSA_BLOCK_BYTES_COUNT];
-                memset(buffer, 0, sizeof(buffer));
-                
-                long bytesReadCount = 0;
-                bytesReadCount = [_inputStream read:buffer maxLength:RSA_BLOCK_READ_BYTES_COUNT];
-                
-                if (bytesReadCount)
+                if (encrypting)
                 {
                     //add padding bytes
-                    int paddingByte = RSA_BLOCK_BYTES_COUNT - ((int)bytesReadCount % RSA_BLOCK_BYTES_COUNT);
+                    int paddingByte = bufferSize - ((int)bytesReadCount % bufferSize);
                     for (int i = 0; i < paddingByte; i++)
-                        buffer[RSA_BLOCK_BYTES_COUNT - 1 - i] = (char)paddingByte;
-                    
-                    char encryptedBytes[RSA_BLOCK_SIZE];
-                    memset(encryptedBytes, 0, sizeof(encryptedBytes));
-                    
-                    int encryptedLength = [self.rsaKey encryptBytes:(char*)buffer length:RSA_BLOCK_BYTES_COUNT toBytes:encryptedBytes];
-                    
-                    if ([_outputStream hasSpaceAvailable])
-                        [_outputStream write:(uint8_t*)encryptedBytes maxLength:encryptedLength];
+                        buffer[bufferSize - 1 - i] = (char)paddingByte;
                 }
-            }
-            else if (_processingMode == MODE_DECRYPT)
-            {
-                uint8_t buffer[RSA_BLOCK_SIZE];
-                long bytesReadCount = 0;
-                bytesReadCount = [_inputStream read:buffer maxLength:RSA_BLOCK_SIZE];
                 
-                if (bytesReadCount)
-                {                    
-                    char decryptedBytes[RSA_BLOCK_BYTES_COUNT];
-                    memset(decryptedBytes, 0, sizeof(decryptedBytes));
-                    
-                    int decryptedLength = [self.rsaKey decryptBytes:(char*)buffer length:bytesReadCount toBytes:decryptedBytes];
-                    
-                    //remove padding bytes
-                    int paddingOffset = decryptedBytes[RSA_BLOCK_BYTES_COUNT - 1];
-                    
-                    if ([_outputStream hasSpaceAvailable])
-                        [_outputStream write:(uint8_t*)decryptedBytes maxLength:decryptedLength - paddingOffset];
-                }
+                char outputBytes[outputSize];
+                memset(outputBytes, 0, sizeof(outputBytes));
+                
+                int outputLength = [self.rsaKey processBytes:(char*)buffer
+                                                      length:(encrypting ? bufferSize : bytesReadCount)
+                                                     toBytes:outputBytes
+                                                        mode:_processingMode];
+                
+                int paddingOffset = 0;
+                
+                //remove padding bytes
+                if (!encrypting)
+                    paddingOffset = outputBytes[outputSize - 1];
+                
+                if ([_outputStream hasSpaceAvailable])
+                    [_outputStream write:(uint8_t*)outputBytes maxLength:outputLength - paddingOffset];
             }
-            else
-                assert(false);
             
             break;
         }

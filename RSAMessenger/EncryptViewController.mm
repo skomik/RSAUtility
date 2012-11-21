@@ -31,7 +31,7 @@
     
     //TODO: remove
     [publicKeyText setStringValue:@"/Users/skomik/Desktop/temp/myRSAPublicKey.rsa-key"];
-    [fileToEncryptText setStringValue:@"/Users/skomik/Desktop/temp/tongue_03.png"];
+    [fileToEncryptText setStringValue:@"/Users/skomik/Desktop/temp/photo.jpg"];
 }
 
 - (IBAction)publicKeyBrowsePressed:(id)sender

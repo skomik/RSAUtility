@@ -32,7 +32,7 @@
     
     //TODO: remove
     [keyPairText setStringValue:@"/Users/skomik/Desktop/temp/myRSAKeys.rsa-key-pair"];
-    [fileToDecryptText setStringValue:@"/Users/skomik/Desktop/temp/tongue_03.png.rsa-encrypted"];
+    [fileToDecryptText setStringValue:@"/Users/skomik/Desktop/temp/photo.jpg.rsa-encrypted"];
 }
 
 - (IBAction)keyPairBrowsePressed:(id)sender

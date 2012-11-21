@@ -13,7 +13,9 @@
 #define BASE_2 2
 
 #define RSA_LENGTH 1024
-#define RSA_BLOCK_BYTES_COUNT 10
+#define RSA_BLOCK_SIZE RSA_LENGTH/8
+#define RSA_BLOCK_BYTES_COUNT (RSA_LENGTH/8 - 1)
+#define RSA_BLOCK_READ_BYTES_COUNT RSA_BLOCK_BYTES_COUNT - 1
 
 @interface RSAKey : NSObject
 {
@@ -25,8 +27,8 @@
 - (id)initWithGMPKey:(mpz_t)key andMagnitude:(mpz_t)magnitude;
 - (id)initWithKey:(NSString*)key andMagnitude:(NSString*)magnitude;
 
-- (void)encryptString:(char *)stringToEncrypt toString:(char *)encryptedString;
-- (void)decryptString:(char *)stringToDecrypt toString:(char *)decryptedString;
+- (int)encryptBytes:(char*)bytesToEnrypt length:(long)length toBytes:(char*)encryptedBytes;
+- (int)decryptBytes:(char*)bytesToDerypt length:(long)length toBytes:(char*)decryptedBytes;
 
 - (void)encodeWithCoder:(NSCoder*)coder;
 

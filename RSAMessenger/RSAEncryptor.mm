@@ -77,57 +77,49 @@ enum { MODE_ENCRYPT, MODE_DECRYPT };
     switch (eventCode)
     {
         case NSStreamEventHasBytesAvailable:
-        {
-            NSUInteger keyLength = [[self.rsaKey getMagnitudeString] length];
-            
+        {            
             if (_processingMode == MODE_ENCRYPT)
             {
-                uint8_t buffer[RSA_BLOCK_BYTES_COUNT + 1];
+                uint8_t buffer[RSA_BLOCK_BYTES_COUNT];
+                memset(buffer, 0, sizeof(buffer));
+                
                 long bytesReadCount = 0;
-                bytesReadCount = [_inputStream read:buffer maxLength:RSA_BLOCK_BYTES_COUNT];
+                bytesReadCount = [_inputStream read:buffer maxLength:RSA_BLOCK_READ_BYTES_COUNT];
                 
                 if (bytesReadCount)
                 {
-                    //making string out of read bytes
-                    buffer[bytesReadCount] = '\0';
+                    //add padding bytes
+                    int paddingByte = RSA_BLOCK_BYTES_COUNT - ((int)bytesReadCount % RSA_BLOCK_BYTES_COUNT);
+                    for (int i = 0; i < paddingByte; i++)
+                        buffer[RSA_BLOCK_BYTES_COUNT - 1 - i] = (char)paddingByte;
                     
-                    char* inputString = (char *)buffer;
-                    char outputString[keyLength];
+                    char encryptedBytes[RSA_BLOCK_SIZE];
+                    memset(encryptedBytes, 0, sizeof(encryptedBytes));
                     
-                    [self.rsaKey encryptString:inputString toString:outputString];
-                    
-                    for (unsigned long i = strlen(outputString); i < keyLength - 1; i++)
-                        outputString[i] = '$';
-                    outputString[keyLength - 1] = '\n';
+                    int encryptedLength = [self.rsaKey encryptBytes:(char*)buffer length:RSA_BLOCK_BYTES_COUNT toBytes:encryptedBytes];
                     
                     if ([_outputStream hasSpaceAvailable])
-                        [_outputStream write:(uint8_t*)outputString maxLength:keyLength];
+                        [_outputStream write:(uint8_t*)encryptedBytes maxLength:encryptedLength];
                 }
             }
             else if (_processingMode == MODE_DECRYPT)
             {
-                uint8_t buffer[keyLength + 1];
+                uint8_t buffer[RSA_BLOCK_SIZE];
                 long bytesReadCount = 0;
-                bytesReadCount = [_inputStream read:buffer maxLength:keyLength];
+                bytesReadCount = [_inputStream read:buffer maxLength:RSA_BLOCK_SIZE];
                 
                 if (bytesReadCount)
-                {
-                    //making string out of read bytes
-                    long iterator = bytesReadCount;
-                    while (buffer[iterator] < '0' || buffer[iterator] > '9') { iterator--; }
-                    buffer[iterator+1] = '\0';
+                {                    
+                    char decryptedBytes[RSA_BLOCK_BYTES_COUNT];
+                    memset(decryptedBytes, 0, sizeof(decryptedBytes));
                     
-                    char* inputString = (char*)buffer;
-                    char outputString[RSA_BLOCK_BYTES_COUNT + 1];
+                    int decryptedLength = [self.rsaKey decryptBytes:(char*)buffer length:bytesReadCount toBytes:decryptedBytes];
                     
-                    printf("input: %s\n", inputString);
-                    
-                    [self.rsaKey decryptString:inputString toString:outputString];
-                    
-                    printf("output: %s\n", outputString);
+                    //remove padding bytes
+                    int paddingOffset = decryptedBytes[RSA_BLOCK_BYTES_COUNT - 1];
                     
                     if ([_outputStream hasSpaceAvailable])
-                        [_outputStream write:(uint8_t*)outputString maxLength:strlen(outputString)];
+                        [_outputStream write:(uint8_t*)decryptedBytes maxLength:decryptedLength - paddingOffset];
                 }
             }
             else

@@ -11,11 +11,12 @@
 
 const NSString* kRSAKey_key = @"kRSAKey_key";
 const NSString* kRSAKey_magnitude = @"kRSAKey_magnitude";
+const NSString* kRSAKey_rsa_length = @"kRSAKey_rsa_length";
 
 void logNumber(mpz_t number)
 {
-    char string[RSA_LENGTH];
-    mpz_get_str(string, 16, number);
+    char string[RSA_LENGTH_MAXIMUM];
+    mpz_get_str(string, BASE_16, number);
     printf("%s\n", string);
 }
 
@@ -29,23 +30,25 @@ void logNumber(mpz_t number)
     [super dealloc];
 }
 
-- (id)initWithGMPKey:(mpz_t)key andMagnitude:(__mpz_struct *)magnitude
+- (id)initWithGMPKey:(mpz_t)key magnitude:(__mpz_struct *)magnitude andLength:(int)length
 {
     if (self = [super init])
     {
         _key = new mpz_class(key);
         _magnitude = new mpz_class(magnitude);
+        _rsa_length = length;
     }
     
     return self;
 }
 
-- (id)initWithKey:(NSString *)key andMagnitude:(NSString *)magnitude
+- (id)initWithKey:(NSString *)key magnitude:(NSString *)magnitude andLength:(int)length
 {
     if (self = [super init])
     {
         _key = new mpz_class([key getSTLString]);
         _magnitude = new mpz_class([magnitude getSTLString]);
+        _rsa_length = length;
     }
     
     return self;
@@ -55,8 +58,9 @@ void logNumber(mpz_t number)
 {
     NSString* key = [coder decodeObjectForKey:(NSString*)kRSAKey_key];
     NSString* magnitude = [coder decodeObjectForKey:(NSString*)kRSAKey_magnitude];
+    int rsa_length = [coder decodeIntForKey:(NSString*)kRSAKey_rsa_length];
     
-    self = [self initWithKey:key andMagnitude:magnitude];
+    self = [self initWithKey:key magnitude:magnitude andLength:rsa_length];
     
     return self;
 }
@@ -73,7 +77,7 @@ void logNumber(mpz_t number)
     mpz_import(inputNumber, length, 1, sizeof(bytesToProcess[0]), 0, 0, bytesToProcess);
     mpz_powm(outputNumber, inputNumber, _key->get_mpz_t(), _magnitude->get_mpz_t());
     
-    int maxLength = encrypting ? RSA_BLOCK_SIZE : RSA_BLOCK_BYTES_COUNT;
+    int maxLength = encrypting ? [self getBlockSize] : [self getBlockEncryptedBytesCount];
     int exportLength = (mpz_sizeinbase(outputNumber, BASE_2) + 8 - 1)/8;
     int offset = maxLength - exportLength;
     
@@ -88,6 +92,27 @@ void logNumber(mpz_t number)
 {
     [coder encodeObject:[self getKeyString] forKey:(NSString*)kRSAKey_key];
     [coder encodeObject:[self getMagnitudeString] forKey:(NSString*)kRSAKey_magnitude];
+    [coder encodeInt:_rsa_length forKey:(NSString*)kRSAKey_rsa_length];
+}
+
+- (int)getBitLength
+{
+    return _rsa_length;
+}
+
+- (int)getBlockSize
+{
+    return _rsa_length/8;
+}
+
+- (int)getBlockEncryptedBytesCount
+{
+    return _rsa_length/8 - 1;
+}
+
+- (int)getBlockReadBytesCount
+{
+    return _rsa_length/8 - 2;
 }
 
 - (NSString*)getKeyString

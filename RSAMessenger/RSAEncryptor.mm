@@ -78,9 +78,9 @@
         {                            
             bool encrypting = _processingMode == MODE_ENCRYPT;
             
-            int bufferSize = encrypting ? RSA_BLOCK_BYTES_COUNT : RSA_BLOCK_SIZE;
-            int outputSize = encrypting ? RSA_BLOCK_SIZE : RSA_BLOCK_BYTES_COUNT;
-            int readCount = encrypting ? RSA_BLOCK_READ_BYTES_COUNT : RSA_BLOCK_SIZE;
+            int bufferSize = encrypting ? [self.rsaKey getBlockEncryptedBytesCount] : [self.rsaKey getBlockSize];
+            int outputSize = encrypting ? [self.rsaKey getBlockSize] : [self.rsaKey getBlockEncryptedBytesCount];
+            int readCount = encrypting ? [self.rsaKey getBlockReadBytesCount] : [self.rsaKey getBlockSize];
             
             uint8_t buffer[bufferSize];
             memset(buffer, 0, sizeof(buffer));

@@ -30,7 +30,7 @@
 
 - (IBAction)generatePressed:(id)sender
 {
-    self.currentRSAKeyPair = [RSAKeyPair randomPairWithLength:RSA_LENGTH];
+    self.currentRSAKeyPair = [RSAKeyPair randomPairWithLength:RSA_LENGTH_DEFAULT];
 }
 
 - (IBAction)savePressed:(id)sender

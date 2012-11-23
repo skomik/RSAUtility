@@ -46,15 +46,15 @@
 		F939F0851659813F0028CAC3 /* DecryptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecryptViewController.h; sourceTree = "<group>"; };
 		F939F0861659813F0028CAC3 /* DecryptViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DecryptViewController.mm; sourceTree = "<group>"; };
 		F939F087165981400028CAC3 /* DecryptViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DecryptViewController.xib; sourceTree = "<group>"; };
-		F9ECC9EF1657A8ED00D3CC84 /* RSAMessenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSAMessenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9ECC9EF1657A8ED00D3CC84 /* RSAUtility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSAUtility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9ECC9F31657A8ED00D3CC84 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F9ECC9F61657A8ED00D3CC84 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		F9ECC9F71657A8ED00D3CC84 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F9ECC9F81657A8ED00D3CC84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		F9ECC9FB1657A8ED00D3CC84 /* RSAMessenger-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RSAMessenger-Info.plist"; sourceTree = "<group>"; };
+		F9ECC9FB1657A8ED00D3CC84 /* RSAUtility-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RSAUtility-Info.plist"; sourceTree = "<group>"; };
 		F9ECC9FD1657A8ED00D3CC84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F9ECC9FF1657A8ED00D3CC84 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		F9ECCA011657A8ED00D3CC84 /* RSAMessenger-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSAMessenger-Prefix.pch"; sourceTree = "<group>"; };
+		F9ECCA011657A8ED00D3CC84 /* RSAUtility-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSAUtility-Prefix.pch"; sourceTree = "<group>"; };
 		F9ECCA031657A8ED00D3CC84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		F9ECCA051657A8ED00D3CC84 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F9ECCA061657A8ED00D3CC84 /* AppDelegate.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 		F9ECC9E41657A8ED00D3CC84 = {
 			isa = PBXGroup;
 			children = (
-				F9ECC9F91657A8ED00D3CC84 /* RSAMessenger */,
+				F9ECC9F91657A8ED00D3CC84 /* RSAUtility */,
 				F9ECC9F21657A8ED00D3CC84 /* Frameworks */,
 				F9ECC9F01657A8ED00D3CC84 /* Products */,
 			);
@@ -143,7 +143,7 @@
 		F9ECC9F01657A8ED00D3CC84 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F9ECC9EF1657A8ED00D3CC84 /* RSAMessenger.app */,
+				F9ECC9EF1657A8ED00D3CC84 /* RSAUtility.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,7 +167,7 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		F9ECC9F91657A8ED00D3CC84 /* RSAMessenger */ = {
+		F9ECC9F91657A8ED00D3CC84 /* RSAUtility */ = {
 			isa = PBXGroup;
 			children = (
 				F9ECCA101657AA7400D3CC84 /* Libs */,
@@ -175,16 +175,17 @@
 				F939F06B16596B1E0028CAC3 /* Resources */,
 				F9ECC9FA1657A8ED00D3CC84 /* Supporting Files */,
 			);
+			name = RSAUtility;
 			path = RSAMessenger;
 			sourceTree = "<group>";
 		};
 		F9ECC9FA1657A8ED00D3CC84 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				F9ECC9FB1657A8ED00D3CC84 /* RSAMessenger-Info.plist */,
+				F9ECC9FB1657A8ED00D3CC84 /* RSAUtility-Info.plist */,
 				F9ECC9FC1657A8ED00D3CC84 /* InfoPlist.strings */,
 				F9ECC9FF1657A8ED00D3CC84 /* main.m */,
-				F9ECCA011657A8ED00D3CC84 /* RSAMessenger-Prefix.pch */,
+				F9ECCA011657A8ED00D3CC84 /* RSAUtility-Prefix.pch */,
 				F9ECCA021657A8ED00D3CC84 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
@@ -213,9 +214,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F9ECC9EE1657A8ED00D3CC84 /* RSAMessenger */ = {
+		F9ECC9EE1657A8ED00D3CC84 /* RSAUtility */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F9ECCA0D1657A8ED00D3CC84 /* Build configuration list for PBXNativeTarget "RSAMessenger" */;
+			buildConfigurationList = F9ECCA0D1657A8ED00D3CC84 /* Build configuration list for PBXNativeTarget "RSAUtility" */;
 			buildPhases = (
 				F9ECC9EB1657A8ED00D3CC84 /* Sources */,
 				F9ECC9EC1657A8ED00D3CC84 /* Frameworks */,
@@ -225,9 +226,9 @@
 			);
 			dependencies = (
 			);
-			name = RSAMessenger;
+			name = RSAUtility;
 			productName = RSAMessenger;
-			productReference = F9ECC9EF1657A8ED00D3CC84 /* RSAMessenger.app */;
+			productReference = F9ECC9EF1657A8ED00D3CC84 /* RSAUtility.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -239,7 +240,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = skomik;
 			};
-			buildConfigurationList = F9ECC9E91657A8ED00D3CC84 /* Build configuration list for PBXProject "RSAMessenger" */;
+			buildConfigurationList = F9ECC9E91657A8ED00D3CC84 /* Build configuration list for PBXProject "RSAUtility" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -251,7 +252,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F9ECC9EE1657A8ED00D3CC84 /* RSAMessenger */,
+				F9ECC9EE1657A8ED00D3CC84 /* RSAUtility */,
 			);
 		};
 /* End PBXProject section */
@@ -378,14 +379,14 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RSAMessenger/RSAMessenger-Prefix.pch";
+				GCC_PREFIX_HEADER = "RSAMessenger/RSAUtility-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/RSAMessenger/libs/gmp\"";
-				INFOPLIST_FILE = "RSAMessenger/RSAMessenger-Info.plist";
+				INFOPLIST_FILE = "RSAMessenger/RSAUtility-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/RSAMessenger/libs/gmp\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RSAUtility;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -395,14 +396,14 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RSAMessenger/RSAMessenger-Prefix.pch";
+				GCC_PREFIX_HEADER = "RSAMessenger/RSAUtility-Prefix.pch";
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/RSAMessenger/libs/gmp\"";
-				INFOPLIST_FILE = "RSAMessenger/RSAMessenger-Info.plist";
+				INFOPLIST_FILE = "RSAMessenger/RSAUtility-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/RSAMessenger/libs/gmp\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RSAUtility;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -410,7 +411,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F9ECC9E91657A8ED00D3CC84 /* Build configuration list for PBXProject "RSAMessenger" */ = {
+		F9ECC9E91657A8ED00D3CC84 /* Build configuration list for PBXProject "RSAUtility" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F9ECCA0B1657A8ED00D3CC84 /* Debug */,
@@ -419,7 +420,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F9ECCA0D1657A8ED00D3CC84 /* Build configuration list for PBXNativeTarget "RSAMessenger" */ = {
+		F9ECCA0D1657A8ED00D3CC84 /* Build configuration list for PBXNativeTarget "RSAUtility" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F9ECCA0E1657A8ED00D3CC84 /* Debug */,

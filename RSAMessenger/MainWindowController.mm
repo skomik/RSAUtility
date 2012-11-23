@@ -19,6 +19,17 @@ enum { TAB_GENERATE, TAB_ENCRYPT, TAB_DECRYPT };
 
 @implementation MainWindowController
 
++ (void)showErrorAlert:(NSString *)message
+{
+    NSAlert* alert = [NSAlert alertWithMessageText:@"Error"
+                                     defaultButton:@"OK"
+                                   alternateButton:nil
+                                       otherButton:nil
+                         informativeTextWithFormat:message, nil];
+    
+    [alert runModal];
+}
+
 - (id)initWithWindow:(NSWindow *)window
 {
     self = [super initWithWindow:window];

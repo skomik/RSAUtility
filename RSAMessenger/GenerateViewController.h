@@ -15,13 +15,18 @@
     IBOutlet NSTextField *publicKey;
     IBOutlet NSTextField *publicExponent;
     IBOutlet NSTextField *privateKey;
+    
+    IBOutlet NSTextField *rsaLengthText;
+    IBOutlet NSStepper *rsaLengthStepper;
 }
 
 @property (nonatomic, retain, setter = setRSAKeyPair:) RSAKeyPair* currentRSAKeyPair;
+@property (nonatomic, retain) NSNumber* rsaKeyLength;
 
 - (IBAction)generatePressed:(id)sender;
 - (IBAction)savePressed:(id)sender;
 - (IBAction)loadPressed:(id)sender;
 - (IBAction)sharePressed:(id)sender;
+- (IBAction)valueChanged:(id)sender;
 
 @end

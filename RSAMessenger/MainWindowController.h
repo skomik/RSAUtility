@@ -21,4 +21,6 @@
 @property (nonatomic, retain) DecryptViewController* decryptViewController;
 @property (nonatomic, retain) GenerateViewController* generateViewController;
 
++ (void)showErrorAlert:(NSString*)message;
+
 @end

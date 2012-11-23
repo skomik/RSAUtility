@@ -7,6 +7,7 @@
 //
 
 #import "GenerateViewController.h"
+#import "MainWindowController.h"
 #import "RSAKeyPair.h"
 #import "Helper.h"
 
@@ -23,6 +24,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Initialization code here.
+        self.rsaKeyLength = [NSNumber numberWithInt:RSA_LENGTH_DEFAULT];
     }
     
     return self;
@@ -30,7 +32,10 @@
 
 - (IBAction)generatePressed:(id)sender
 {
-    self.currentRSAKeyPair = [RSAKeyPair randomPairWithLength:RSA_LENGTH_DEFAULT];
+    if ([rsaLengthText intValue] != [self.rsaKeyLength intValue])
+        [self valueChanged:rsaLengthText];
+    
+    self.currentRSAKeyPair = [RSAKeyPair randomPairWithLength:[self.rsaKeyLength intValue]];
 }
 
 - (IBAction)savePressed:(id)sender
@@ -71,7 +76,14 @@
          [openPanel orderOut:self];
          
          if (result == NSFileHandlingPanelOKButton) {
-             self.currentRSAKeyPair = [NSKeyedUnarchiver unarchiveObjectWithFile:[[openPanel URL] path]];
+             @try {
+                 self.currentRSAKeyPair = [NSKeyedUnarchiver unarchiveObjectWithFile:[[openPanel URL] path]];
+             }
+             @catch (NSException* exception) { }
+             @finally {
+                 if (!self.currentRSAKeyPair)
+                    [MainWindowController showErrorAlert:@"Wrong key file format"]; 
+             }
          }
      }];
 }
@@ -101,6 +113,28 @@
      }];
 }
 
+- (void)valueChanged:(id)sender
+{
+    int value = [sender intValue];
+    
+    if (value < [rsaLengthStepper minValue])
+        value = [rsaLengthStepper minValue];
+    else if (value > [rsaLengthStepper maxValue])
+        value = [rsaLengthStepper maxValue];
+    
+    self.rsaKeyLength = [NSNumber numberWithInt:value];
+    
+    [self updateValues];
+}
+
+- (void)updateValues
+{
+    NSString *valueString = [NSString stringWithFormat:@"%d", [self.rsaKeyLength intValue]];
+    
+    [rsaLengthText setStringValue:valueString];
+    [rsaLengthStepper setStringValue:valueString];
+}
+
 - (void)setRSAKeyPair:(RSAKeyPair *)value;
 {
     if (_currentRSAKeyPair)
@@ -116,13 +150,7 @@
 
 - (void)showEmptyKeyAlert
 {
-    NSAlert* alert = [NSAlert alertWithMessageText:@"Empty Key"
-                                     defaultButton:@"OK"
-                                   alternateButton:nil
-                                       otherButton:nil
-                         informativeTextWithFormat:@"Generate key pair first or load it from file"];
-    
-    [alert runModal];
+    [MainWindowController showErrorAlert:@"Empty key. Generate key pair first or load it from file"];
 }
 
 - (void)updateView
@@ -135,5 +163,7 @@
     [publicExponent setStringValue:(publicExponentString) ? publicExponentString : @""];
     [privateKey setStringValue:(privateKeyString) ? privateKeyString : @""];
 }
+
+
 
 @end

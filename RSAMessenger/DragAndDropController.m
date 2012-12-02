@@ -7,6 +7,7 @@
 //
 
 #import "DragAndDropController.h"
+#import "DropDestinationView.h"
 
 @interface DragAndDropController ()
 

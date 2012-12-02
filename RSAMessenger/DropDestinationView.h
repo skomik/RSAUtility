@@ -1,5 +1,5 @@
 //
-//  DragAndDropController.h
+//  DropDestinationView.h
 //  RSAUtility
 //
 //  Created by Sergey Olkhovnikov on 02.12.12.
@@ -8,8 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class DropDestinationView;
-
-@interface DragAndDropController : NSViewController
+@interface DropDestinationView : NSView
 
 @end

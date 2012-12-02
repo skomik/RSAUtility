@@ -19,6 +19,7 @@
 		F939F089165981400028CAC3 /* DecryptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F939F087165981400028CAC3 /* DecryptViewController.xib */; };
 		F992F3AE166BE21000790EAB /* DragAndDropController.m in Sources */ = {isa = PBXBuildFile; fileRef = F992F3AC166BE21000790EAB /* DragAndDropController.m */; };
 		F992F3AF166BE21000790EAB /* DragAndDropController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F992F3AD166BE21000790EAB /* DragAndDropController.xib */; };
+		F992F3B7166BE79600790EAB /* DropDestinationView.m in Sources */ = {isa = PBXBuildFile; fileRef = F992F3B6166BE79600790EAB /* DropDestinationView.m */; };
 		F9ECC9F41657A8ED00D3CC84 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ECC9F31657A8ED00D3CC84 /* Cocoa.framework */; };
 		F9ECC9FE1657A8ED00D3CC84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9ECC9FC1657A8ED00D3CC84 /* InfoPlist.strings */; };
 		F9ECCA001657A8ED00D3CC84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9ECC9FF1657A8ED00D3CC84 /* main.m */; };
@@ -51,6 +52,8 @@
 		F992F3AB166BE21000790EAB /* DragAndDropController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragAndDropController.h; sourceTree = "<group>"; };
 		F992F3AC166BE21000790EAB /* DragAndDropController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragAndDropController.m; sourceTree = "<group>"; };
 		F992F3AD166BE21000790EAB /* DragAndDropController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DragAndDropController.xib; sourceTree = "<group>"; };
+		F992F3B5166BE79600790EAB /* DropDestinationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDestinationView.h; sourceTree = "<group>"; };
+		F992F3B6166BE79600790EAB /* DropDestinationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropDestinationView.m; sourceTree = "<group>"; };
 		F9ECC9EF1657A8ED00D3CC84 /* RSAUtility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSAUtility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9ECC9F31657A8ED00D3CC84 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F9ECC9F61657A8ED00D3CC84 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -94,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				F939F0701659726A0028CAC3 /* Controllers */,
+				F992F3B5166BE79600790EAB /* DropDestinationView.h */,
+				F992F3B6166BE79600790EAB /* DropDestinationView.m */,
 				F9ECCA1B1657B22600D3CC84 /* Helper.h */,
 				F9ECCA1C1657B22600D3CC84 /* Helper.mm */,
 				F9345291165A7DC200A5F90B /* RSAEncryptor.h */,
@@ -300,6 +305,7 @@
 				F939F088165981400028CAC3 /* DecryptViewController.mm in Sources */,
 				F9345293165A7DC200A5F90B /* RSAEncryptor.mm in Sources */,
 				F992F3AE166BE21000790EAB /* DragAndDropController.m in Sources */,
+				F992F3B7166BE79600790EAB /* DropDestinationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

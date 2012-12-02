@@ -18,12 +18,12 @@
 @implementation GenerateViewController
 
 @synthesize currentRSAKeyPair=_currentRSAKeyPair;
+@synthesize rsaKeyLength=_rsaKeyLength;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Initialization code here.
         self.rsaKeyLength = [NSNumber numberWithInt:RSA_LENGTH_DEFAULT];
     }
     
@@ -127,14 +127,6 @@
     [self updateValues];
 }
 
-- (void)updateValues
-{
-    NSString *valueString = [NSString stringWithFormat:@"%d", [self.rsaKeyLength intValue]];
-    
-    [rsaLengthText setStringValue:valueString];
-    [rsaLengthStepper setStringValue:valueString];
-}
-
 - (void)setRSAKeyPair:(RSAKeyPair *)value;
 {
     if (_currentRSAKeyPair)
@@ -148,9 +140,27 @@
     [self updateView];
 }
 
+- (void)setRSAKeyLength:(NSNumber *)value
+{
+    if (_rsaKeyLength)
+        [_rsaKeyLength release];
+    
+    _rsaKeyLength = [value retain];
+    
+    [self updateValues];
+}
+
 - (void)showEmptyKeyAlert
 {
     [MainWindowController showErrorAlert:@"Empty key. Generate key pair first or load it from file"];
+}
+
+- (void)updateValues
+{
+    NSString *valueString = [NSString stringWithFormat:@"%d", [self.rsaKeyLength intValue]];
+    
+    [rsaLengthText setStringValue:valueString];
+    [rsaLengthStepper setStringValue:valueString];
 }
 
 - (void)updateView
@@ -162,6 +172,8 @@
     [publicKey setStringValue:(publicKeyString) ? publicKeyString : @""];
     [publicExponent setStringValue:(publicExponentString) ? publicExponentString : @""];
     [privateKey setStringValue:(privateKeyString) ? privateKeyString : @""];
+    
+    [self setRSAKeyLength:[NSNumber numberWithInt:self.currentRSAKeyPair.bitLength]];
 }
 
 

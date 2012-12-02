@@ -11,12 +11,15 @@
 
 @interface RSAKeyPair : NSObject
 {
+    int _bitLength;
+    
     RSAKey* _publicKey;
     RSAKey* _privateKey;
 }
 
 @property (readonly, retain) RSAKey* publicKey;
 @property (readonly, retain) RSAKey* privateKey;
+@property (readonly, assign) int bitLength;
 
 + (RSAKeyPair*)randomPairWithLength:(int)length;
 

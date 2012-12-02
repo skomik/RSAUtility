@@ -21,7 +21,7 @@
 }
 
 @property (nonatomic, retain, setter = setRSAKeyPair:) RSAKeyPair* currentRSAKeyPair;
-@property (nonatomic, retain) NSNumber* rsaKeyLength;
+@property (nonatomic, retain, setter = setRSAKeyLength:) NSNumber* rsaKeyLength;
 
 - (IBAction)generatePressed:(id)sender;
 - (IBAction)savePressed:(id)sender;

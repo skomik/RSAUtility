@@ -8,6 +8,7 @@
 
 #import "RSAKeyPair.h"
 
+const NSString* kRSAKeyPair_bitLength = @"kRSAKeyPair_bitLength";
 const NSString* kRSAKeyPair_publicKey = @"kRSAKeyPair_publicKey";
 const NSString* kRSAKeyPair_privateKey = @"kRSAKeyPair_privateKey";
 
@@ -133,6 +134,7 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d)
 
 @synthesize publicKey=_publicKey;
 @synthesize privateKey=_privateKey;
+@synthesize bitLength=_bitLength;
 
 + (RSAKeyPair*)randomPairWithLength:(int)length
 {
@@ -151,6 +153,8 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d)
 {
     if (self = [super init])
     {
+        _bitLength = length;
+        
         mpz_t e, n, d;
         
         mpz_init(e);
@@ -158,7 +162,7 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d)
         mpz_init(d);
         
         RSA_initRandom();
-        RSA_generateKeyPair(length, e, n, d);
+        RSA_generateKeyPair(_bitLength, e, n, d);
         
         _publicKey = [[RSAKey alloc] initWithGMPKey:e magnitude:n andLength:length];
         _privateKey = [[RSAKey alloc] initWithGMPKey:d magnitude:n andLength:length];
@@ -175,6 +179,7 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d)
 {
     if (self = [super init])
     {
+        _bitLength = [coder decodeIntForKey:(NSString*)kRSAKeyPair_bitLength];
         _publicKey = [[coder decodeObjectForKey:(NSString*)kRSAKeyPair_publicKey] retain];
         _privateKey = [[coder decodeObjectForKey:(NSString*)kRSAKeyPair_privateKey] retain];
     }
@@ -184,6 +189,7 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d)
 
 - (void)encodeWithCoder:(NSCoder*)coder
 {
+    [coder encodeInt:_bitLength forKey:(NSString*)kRSAKeyPair_bitLength];
     [coder encodeObject:_publicKey forKey:(NSString*)kRSAKeyPair_publicKey];
     [coder encodeObject:_privateKey forKey:(NSString*)kRSAKeyPair_privateKey];
 }

@@ -85,6 +85,9 @@ void logNumber(mpz_t number)
     
     mpz_export(processedBytes + offset, NULL, 1, sizeof(char), 0, 0, outputNumber);
     
+    mpz_clear(inputNumber);
+    mpz_clear(outputNumber);
+    
     return exportLength + offset;
 }
 

@@ -36,6 +36,7 @@ enum { TAB_GENERATE, TAB_ENCRYPT, TAB_DECRYPT };
     self = [super initWithWindow:window];
     if (self)
     {
+        [self setWindowFrameAutosaveName:@"MainWindow"];
     }
     
     return self;

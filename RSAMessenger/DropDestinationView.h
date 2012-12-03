@@ -8,6 +8,21 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface DropDestinationView : NSView
+@class DropDestinationView;
+
+@protocol DropDestinationViewDelegate
+- (void)destinationView:(DropDestinationView*) view selectedFile:(NSString*)filePath;
+@end
+
+@interface DropDestinationView : NSView <NSDraggingDestination>
+{
+    bool highlight;
+    NSTextField* textField;
+}
+
+@property (nonatomic, assign) NSObject<DropDestinationViewDelegate>* delegate;
+
+- (void)setInitialText:(NSString*)text;
+- (void)reset;
 
 @end

@@ -7,9 +7,15 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "DropDestinationView.h"
 
-@class DropDestinationView;
-
-@interface DragAndDropController : NSViewController
+@interface DragAndDropController : NSViewController <DropDestinationViewDelegate>
+{
+    IBOutlet DropDestinationView *keyFileDestination;
+    IBOutlet DropDestinationView *processedFileDestination;
+    
+    IBOutlet NSButton *startButton;
+    IBOutlet NSScrollView *consoleOutput;
+}
 
 @end

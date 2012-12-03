@@ -25,4 +25,23 @@
     return self;
 }
 
+- (void)loadView
+{
+    [super loadView];
+    
+    [startButton setEnabled:NO];
+    [keyFileDestination setDelegate:self];
+    [processedFileDestination setDelegate:self];
+    
+    //override this
+    [keyFileDestination setInitialText:@"Drop Key File Here"];
+    [processedFileDestination setInitialText:@"Drop File To Encrypt Here"];
+    [startButton setStringValue:@"Start"];
+}
+
+- (void)destinationView:(DropDestinationView *)view selectedFile:(NSURL *)fileURL
+{
+    //TODO: implement
+}
+
 @end

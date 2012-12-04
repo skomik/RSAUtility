@@ -10,7 +10,6 @@
 #import "DropDestinationView.h"
 
 @interface DragAndDropController ()
-
 @end
 
 @implementation DragAndDropController
@@ -34,14 +33,24 @@
     [processedFileDestination setDelegate:self];
     
     //override this
-    [keyFileDestination setInitialText:@"Drop Key File Here"];
-    [processedFileDestination setInitialText:@"Drop File To Encrypt Here"];
-    [startButton setStringValue:@"Start"];
+//    [keyFileDestination setInitialText:@"Drop Key File Here"];
+//    [processedFileDestination setInitialText:@"Drop File To Encrypt Here"];
+//    [startButton setStringValue:@"Start"];
+}
+
+- (IBAction)startButtonPressed:(id)sender
+{
+    [self startFileProcessing];
 }
 
 - (void)destinationView:(DropDestinationView *)view selectedFile:(NSURL *)fileURL
 {
-    //TODO: implement
+    //override this
+}
+
+- (void)startFileProcessing
+{
+    //override this
 }
 
 @end

@@ -7,15 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "DragAndDropController.h"
+#import "RSAEncryptor.h"
 
-@interface EncryptViewController : NSViewController
-{
-    IBOutlet NSTextField *publicKeyText;
-    IBOutlet NSTextField *fileToEncryptText;
-}
+@class RSAKey;
 
-- (IBAction)publicKeyBrowsePressed:(id)sender;
-- (IBAction)fileToEncryptBrowsePressed:(id)sender;
-- (IBAction)encryptPressed:(id)sender;
+@interface EncryptViewController : DragAndDropController <RSAEncryptorDelegate>
+
+@property (nonatomic, retain) RSAKey* rsaPublicKey;
+@property (nonatomic, retain) NSString* fileToEncrypt;
 
 @end

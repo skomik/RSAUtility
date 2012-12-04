@@ -24,6 +24,27 @@ const NSString* kRSAMessengerWorkingDir = @"kRSAMessengerWorkingDir";
 
 @end
 
+@implementation NSView(DisableSubViews)
+
+- (void)setSubViewsEnabled:(BOOL)enabled
+{
+    NSView* currentView = NULL;
+    NSEnumerator* viewEnumerator = [[self subviews] objectEnumerator];
+    
+    while( currentView = [viewEnumerator nextObject] )
+    {
+        if( [currentView respondsToSelector:@selector(setEnabled:)] )
+        {
+            [(NSControl*)currentView setEnabled:enabled];
+        }
+        [currentView setSubViewsEnabled:enabled];
+        
+        [currentView display];
+    }
+}
+
+@end
+
 @implementation Helper
 
 + (NSURL*)getWorkingDir

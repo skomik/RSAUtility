@@ -46,8 +46,8 @@ enum { TAB_GENERATE, TAB_ENCRYPT, TAB_DECRYPT };
 {
     [super windowDidLoad];
     
-    self.encryptViewController = [[[EncryptViewController alloc] initWithNibName:@"EncryptViewController" bundle:[NSBundle mainBundle]] autorelease];
-    self.decryptViewController = [[[DecryptViewController alloc] initWithNibName:@"DecryptViewController" bundle:[NSBundle mainBundle]] autorelease];
+    self.encryptViewController = [[[EncryptViewController alloc] initWithNibName:@"DragAndDropController" bundle:[NSBundle mainBundle]] autorelease];
+    self.decryptViewController = [[[DecryptViewController alloc] initWithNibName:@"DragAndDropController" bundle:[NSBundle mainBundle]] autorelease];
     self.generateViewController = [[[GenerateViewController alloc] initWithNibName:@"GenerateViewController" bundle:[NSBundle mainBundle]] autorelease];
     self.dragAndDropController = [[[DragAndDropController alloc] initWithNibName:@"DragAndDropController" bundle:[NSBundle mainBundle]] autorelease];
     

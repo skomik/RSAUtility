@@ -7,14 +7,17 @@
 //
 
 #import "DecryptViewController.h"
+#import "MainWindowController.h"
 #import "RSAEncryptor.h"
 #import "RSAKeyPair.h"
+#import "Helper.h"
 
 @interface DecryptViewController ()
-
 @end
 
 @implementation DecryptViewController
+
+@synthesize rsaKeyPair, fileToDecrypt;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,33 +33,62 @@
 {
     [super loadView];
     
-    //TODO: remove
-    [keyPairText setStringValue:@"/Users/skomik/Desktop/temp/myRSAKeys.rsa-key-pair"];
-    [fileToDecryptText setStringValue:@"/Users/skomik/Desktop/temp/photo.jpg.rsa-encrypted"];
+    [keyFileDestination setInitialText:@"Drop Your Key Pair Here"];
+    [processedFileDestination setInitialText:@"Drop File To Decrypt Here"];
+    [startButton setTitle:@"Decrypt"];
 }
 
-- (IBAction)keyPairBrowsePressed:(id)sender
+- (void)destinationView:(DropDestinationView *)view selectedFile:(NSString *)filePath
 {
+    if (view == keyFileDestination)
+        [self checkKeyFile:filePath];
     
+    if (view == processedFileDestination)
+        self.fileToDecrypt = filePath;
+    
+    if (self.rsaKeyPair && self.fileToDecrypt)
+        [startButton setEnabled:YES];
 }
 
-- (IBAction)fileToDecryptBrowsePressed:(id)sender
+- (void)checkKeyFile:(NSString*)filePath
 {
+    self.rsaKeyPair = nil;
     
+    @try {
+        self.rsaKeyPair = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+    }
+    @catch (NSException* exception) { }
+    @finally {
+        if (!self.rsaKeyPair || ![self.rsaKeyPair isKindOfClass:[RSAKeyPair class]])
+        {
+            [MainWindowController showErrorAlert:@"Wrong key file format"];
+            [keyFileDestination reset];
+        }
+    }
 }
 
-- (IBAction)decryptPressed:(id)sender
+- (void)startFileProcessing
 {
-    NSString *keyPath = [keyPairText stringValue];
-    NSString *filePath = [fileToDecryptText stringValue];
-    NSString *decryptedFilePath = [[filePath stringByReplacingOccurrencesOfString:@".rsa-encrypted" withString:@""] stringByAppendingString:@".rsa-decrypted"];
+    NSString *decryptedFilePath = [[self.fileToDecrypt stringByReplacingOccurrencesOfString:@".rsa-encrypted" withString:@""] stringByAppendingString:@".rsa-decrypted"];
     
-    RSAKey *privateKey = [[NSKeyedUnarchiver unarchiveObjectWithFile:keyPath] privateKey];
-    
-    [RSAEncryptor decryptFile:[NSURL fileURLWithPath:filePath]
+    [RSAEncryptor decryptFile:[NSURL fileURLWithPath:self.fileToDecrypt]
                        toFile:[NSURL fileURLWithPath:decryptedFilePath]
-                      withKey:privateKey
-                     delegate:nil];
+                      withKey:self.rsaKeyPair.privateKey
+                     delegate:self];
+    
+    [progressIndicator startAnimation:nil];
+    [[self view] setSubViewsEnabled:NO];
+}
+
+- (void)rsaEncryptor:(RSAEncryptor *)encryptor percentComplete:(double)percent
+{
+    //TODO: implement
+}
+
+- (void)rsaEncryptorFinishedWorking:(RSAEncryptor *)encryptor
+{
+    [progressIndicator stopAnimation:nil];
+    [[self view] setSubViewsEnabled:YES];
 }
 
 @end

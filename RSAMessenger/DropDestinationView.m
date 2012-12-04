@@ -63,8 +63,13 @@
 
 - (void)reset
 {
-    [[NSColor darkGrayColor] colorWithAlphaComponent:0.7];
+    [textField setTextColor:[[NSColor darkGrayColor] colorWithAlphaComponent:0.7]];
     [textField setStringValue:self.initialText];
+}
+
+- (BOOL)isFileSelected
+{
+    return ![textField.stringValue isEqualToString:self.initialText];
 }
 
 - (void)drawRect:(NSRect)dirtyRect

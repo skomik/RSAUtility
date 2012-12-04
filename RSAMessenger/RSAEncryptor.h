@@ -11,8 +11,9 @@
 @class RSAKey, RSAEncryptor;
 
 @protocol RSAEncryptorDelegate <NSObject>
-- (void)rsaEncryptor:(RSAEncryptor*)encryptor percentComplete:(double)percent;
 - (void)rsaEncryptorFinishedWorking:(RSAEncryptor*)encryptor;
+@optional
+- (void)rsaEncryptor:(RSAEncryptor*)encryptor percentComplete:(double)percent;
 @end
 
 @interface RSAEncryptor : NSObject <NSStreamDelegate>

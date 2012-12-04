@@ -24,5 +24,6 @@
 
 - (void)setInitialText:(NSString*)text;
 - (void)reset;
+- (BOOL)isFileSelected;
 
 @end

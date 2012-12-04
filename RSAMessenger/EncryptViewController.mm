@@ -7,13 +7,18 @@
 //
 
 #import "EncryptViewController.h"
+#import "MainWindowController.h"
 #import "RSAEncryptor.h"
+#import "RSAKeyPair.h"
+#import "Helper.h"
 
 @interface EncryptViewController ()
 
 @end
 
 @implementation EncryptViewController
+
+@synthesize rsaPublicKey, fileToEncrypt;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,33 +34,62 @@
 {
     [super loadView];
     
-    //TODO: remove
-    [publicKeyText setStringValue:@"/Users/skomik/Desktop/temp/myRSAPublicKey.rsa-key"];
-    [fileToEncryptText setStringValue:@"/Users/skomik/Desktop/temp/photo.jpg"];
+    [keyFileDestination setInitialText:@"Drop Public Key Here"];
+    [processedFileDestination setInitialText:@"Drop File To Encrypt Here"];
+    [startButton setTitle:@"Encrypt"];
 }
 
-- (IBAction)publicKeyBrowsePressed:(id)sender
+- (void)destinationView:(DropDestinationView *)view selectedFile:(NSString *)filePath
 {
+    if (view == keyFileDestination)
+        [self checkKeyFile:filePath];
     
+    if (view == processedFileDestination)
+        self.fileToEncrypt = filePath;
+    
+    if (self.rsaPublicKey && self.fileToEncrypt)
+        [startButton setEnabled:YES];
 }
 
-- (IBAction)fileToEncryptBrowsePressed:(id)sender
+- (void)checkKeyFile:(NSString*)filePath
 {
+    self.rsaPublicKey = nil;
     
+    @try {
+        self.rsaPublicKey = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+    }
+    @catch (NSException* exception) { }
+    @finally {
+        if (!self.rsaPublicKey || ![self.rsaPublicKey isKindOfClass:[RSAKey class]])
+        {
+            [MainWindowController showErrorAlert:@"Wrong key file format"];
+            [keyFileDestination reset];
+        }
+    }
 }
 
-- (IBAction)encryptPressed:(id)sender
+- (void)startFileProcessing
 {
-    NSString *keyPath = [publicKeyText stringValue];
-    NSString *filePath = [fileToEncryptText stringValue];
-    NSString *encryptedFilePath = [filePath stringByAppendingString:@".rsa-encrypted"];
+    NSString *encryptedFilePath = [self.fileToEncrypt stringByAppendingString:@".rsa-encrypted"];
     
-    RSAKey *publicKey = [NSKeyedUnarchiver unarchiveObjectWithFile:keyPath];
-    
-    [RSAEncryptor encryptFile:[NSURL fileURLWithPath:filePath]
+    [RSAEncryptor encryptFile:[NSURL fileURLWithPath:self.fileToEncrypt]
                        toFile:[NSURL fileURLWithPath:encryptedFilePath]
-                      withKey:publicKey
-                     delegate:nil];
+                      withKey:self.rsaPublicKey
+                     delegate:self];
+    
+    [progressIndicator startAnimation:nil];
+    [[self view] setSubViewsEnabled:NO];
+}
+
+- (void)rsaEncryptor:(RSAEncryptor *)encryptor percentComplete:(double)percent
+{
+    //TODO: implement
+}
+
+- (void)rsaEncryptorFinishedWorking:(RSAEncryptor *)encryptor
+{
+    [progressIndicator stopAnimation:nil];
+    [[self view] setSubViewsEnabled:YES];
 }
 
 @end

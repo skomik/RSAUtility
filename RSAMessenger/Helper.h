@@ -14,6 +14,10 @@
 - (std::string)getSTLString;
 @end
 
+@interface NSView(DisableSubViews)
+- (void)setSubViewsEnabled:(BOOL)enabled;
+@end
+
 @interface Helper : NSObject
 
 + (NSURL*)getWorkingDir;

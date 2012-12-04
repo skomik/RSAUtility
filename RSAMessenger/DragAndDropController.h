@@ -16,6 +16,9 @@
     
     IBOutlet NSButton *startButton;
     IBOutlet NSScrollView *consoleOutput;
+    IBOutlet NSProgressIndicator *progressIndicator;
 }
+
+- (void)startFileProcessing;
 
 @end

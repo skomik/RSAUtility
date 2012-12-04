@@ -14,9 +14,7 @@
 		F939F07E165974410028CAC3 /* GenerateViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F939F07C165974410028CAC3 /* GenerateViewController.mm */; };
 		F939F07F165974410028CAC3 /* GenerateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F939F07D165974410028CAC3 /* GenerateViewController.xib */; };
 		F939F083165981340028CAC3 /* EncryptViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F939F081165981340028CAC3 /* EncryptViewController.mm */; };
-		F939F084165981340028CAC3 /* EncryptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F939F082165981340028CAC3 /* EncryptViewController.xib */; };
 		F939F088165981400028CAC3 /* DecryptViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F939F0861659813F0028CAC3 /* DecryptViewController.mm */; };
-		F939F089165981400028CAC3 /* DecryptViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F939F087165981400028CAC3 /* DecryptViewController.xib */; };
 		F992F3AE166BE21000790EAB /* DragAndDropController.m in Sources */ = {isa = PBXBuildFile; fileRef = F992F3AC166BE21000790EAB /* DragAndDropController.m */; };
 		F992F3AF166BE21000790EAB /* DragAndDropController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F992F3AD166BE21000790EAB /* DragAndDropController.xib */; };
 		F992F3B7166BE79600790EAB /* DropDestinationView.m in Sources */ = {isa = PBXBuildFile; fileRef = F992F3B6166BE79600790EAB /* DropDestinationView.m */; };
@@ -45,10 +43,8 @@
 		F939F07D165974410028CAC3 /* GenerateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenerateViewController.xib; sourceTree = "<group>"; };
 		F939F080165981340028CAC3 /* EncryptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncryptViewController.h; sourceTree = "<group>"; };
 		F939F081165981340028CAC3 /* EncryptViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EncryptViewController.mm; sourceTree = "<group>"; };
-		F939F082165981340028CAC3 /* EncryptViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EncryptViewController.xib; sourceTree = "<group>"; };
 		F939F0851659813F0028CAC3 /* DecryptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecryptViewController.h; sourceTree = "<group>"; };
 		F939F0861659813F0028CAC3 /* DecryptViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DecryptViewController.mm; sourceTree = "<group>"; };
-		F939F087165981400028CAC3 /* DecryptViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DecryptViewController.xib; sourceTree = "<group>"; };
 		F992F3AB166BE21000790EAB /* DragAndDropController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragAndDropController.h; sourceTree = "<group>"; };
 		F992F3AC166BE21000790EAB /* DragAndDropController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragAndDropController.m; sourceTree = "<group>"; };
 		F992F3AD166BE21000790EAB /* DragAndDropController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DragAndDropController.xib; sourceTree = "<group>"; };
@@ -117,9 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				F9345284165A58E300A5F90B /* icon.icns */,
-				F939F087165981400028CAC3 /* DecryptViewController.xib */,
 				F992F3AD166BE21000790EAB /* DragAndDropController.xib */,
-				F939F082165981340028CAC3 /* EncryptViewController.xib */,
 				F939F07D165974410028CAC3 /* GenerateViewController.xib */,
 				F9ECCA081657A8ED00D3CC84 /* MainMenu.xib */,
 				F939F073165972A20028CAC3 /* MainWindowController.xib */,
@@ -280,8 +274,6 @@
 				F9ECCA0A1657A8ED00D3CC84 /* MainMenu.xib in Resources */,
 				F939F075165972A20028CAC3 /* MainWindowController.xib in Resources */,
 				F939F07F165974410028CAC3 /* GenerateViewController.xib in Resources */,
-				F939F084165981340028CAC3 /* EncryptViewController.xib in Resources */,
-				F939F089165981400028CAC3 /* DecryptViewController.xib in Resources */,
 				F9345285165A58E300A5F90B /* icon.icns in Resources */,
 				F992F3AF166BE21000790EAB /* DragAndDropController.xib in Resources */,
 			);

@@ -19,7 +19,7 @@ void RSA_initRandom()
     srand((unsigned)time_elapsed);
 }
 
-void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d)
+void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d, mpz_t &dp, mpz_t &dq, mpz_t &qinv)
 {
     int primeSize = length/2;
     
@@ -114,7 +114,7 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d)
     {
         printf("\nOOPS : Could not find multiplicative inverse!\n");
         printf("\nTrying again...");
-        RSA_generateKeyPair(length, e, n, d);
+        RSA_generateKeyPair(length, e, n, d, dp, dq, qinv);
     }
     
     mpz_get_str(d_str,BASE_10,d);
@@ -161,8 +161,14 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d)
         mpz_init(n);
         mpz_init(d);
         
+        //chinese remainder algorithm
+        mpz_t dp, dq, qinv;
+        mpz_init(dp);
+        mpz_init(dq);
+        mpz_init(qinv);
+        
         RSA_initRandom();
-        RSA_generateKeyPair(_bitLength, e, n, d);
+        RSA_generateKeyPair(_bitLength, e, n, d, dp, dq, qinv);
         
         _publicKey = [[RSAKey alloc] initWithGMPKey:e magnitude:n andLength:length];
         _privateKey = [[RSAKey alloc] initWithGMPKey:d magnitude:n andLength:length];
@@ -170,6 +176,10 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d)
         mpz_clear(e);
         mpz_clear(n);
         mpz_clear(d);
+        
+        mpz_clear(dp);
+        mpz_clear(dq);
+        mpz_clear(qinv);
     }
     
     return self;

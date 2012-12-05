@@ -15,6 +15,11 @@
     
     RSAKey* _publicKey;
     RSAKey* _privateKey;
+    
+    //Chinese remainder alhorithm
+    mpz_class* _dp;
+    mpz_class* _dq;
+    mpz_class* _qinv;
 }
 
 @property (readonly, retain) RSAKey* publicKey;

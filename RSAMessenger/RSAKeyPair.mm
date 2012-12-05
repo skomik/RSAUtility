@@ -7,6 +7,7 @@
 //
 
 #import "RSAKeyPair.h"
+#import "Helper.h"
 
 const NSString* kRSAKeyPair_bitLength = @"kRSAKeyPair_bitLength";
 const NSString* kRSAKeyPair_publicKey = @"kRSAKeyPair_publicKey";
@@ -19,14 +20,14 @@ void RSA_initRandom()
     srand((unsigned)time_elapsed);
 }
 
-void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d, mpz_t &dp, mpz_t &dq, mpz_t &qinv)
+void RSA_generateKeyPair(int length, mpz_t &p, mpz_t &q, mpz_t &e, mpz_t &n, mpz_t &d, mpz_t &dp, mpz_t &dq, mpz_t &pinv, mpz_t &qinv)
 {
     int primeSize = length/2;
     
-    mpz_t p,q;
-    
-    mpz_init(p);
-    mpz_init(q);
+//    mpz_t p,q;
+//    
+//    mpz_init(p);
+//    mpz_init(q);
     
     char* p_str = new char[primeSize+1];
     char* q_str = new char[primeSize+1];
@@ -114,7 +115,7 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d, mpz_t &dp, mp
     {
         printf("\nOOPS : Could not find multiplicative inverse!\n");
         printf("\nTrying again...");
-        RSA_generateKeyPair(length, e, n, d, dp, dq, qinv);
+        RSA_generateKeyPair(length, p, q, e, n, d, dp, dq, pinv, qinv);
     }
     
     mpz_get_str(d_str,BASE_10,d);
@@ -122,8 +123,14 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d, mpz_t &dp, mp
     delete p_str;
     delete q_str;
     
-    mpz_clear(p);
-    mpz_clear(q);
+    //chinese remainder algorithm
+    mpz_invert(pinv, p, q); // pinv = p^-1(mod q)
+    mpz_invert(qinv, q, p); // qinv = q^-1(mod p)
+    mpz_tdiv_r(dp, d, p_minus_1); // dp = d (mod p - 1)
+    mpz_tdiv_r(dq, d, q_minus_1); // dq = d (mod q - 1)
+    
+//    mpz_clear(p);
+//    mpz_clear(q);
     mpz_clear(x);
     mpz_clear(p_minus_1);
     mpz_clear(q_minus_1);
@@ -155,30 +162,37 @@ void RSA_generateKeyPair(int length, mpz_t &e, mpz_t &n, mpz_t &d, mpz_t &dp, mp
     {
         _bitLength = length;
         
-        mpz_t e, n, d;
+        mpz_t p, q, e, n, d;
         
+        mpz_init(p);
+        mpz_init(q);
         mpz_init(e);
         mpz_init(n);
         mpz_init(d);
         
         //chinese remainder algorithm
-        mpz_t dp, dq, qinv;
+        mpz_t dp, dq, pinv, qinv;
         mpz_init(dp);
         mpz_init(dq);
+        mpz_init(pinv);
         mpz_init(qinv);
         
         RSA_initRandom();
-        RSA_generateKeyPair(_bitLength, e, n, d, dp, dq, qinv);
+        RSA_generateKeyPair(_bitLength, p, q, e, n, d, dp, dq, pinv, qinv);
         
         _publicKey = [[RSAKey alloc] initWithGMPKey:e magnitude:n andLength:length];
         _privateKey = [[RSAKey alloc] initWithGMPKey:d magnitude:n andLength:length];
+        [_privateKey setChineseRemainder_p:p q:q dp:dp dq:dq pinv:pinv qinv:qinv];
         
+        mpz_clear(p);
+        mpz_clear(q);
         mpz_clear(e);
         mpz_clear(n);
         mpz_clear(d);
         
         mpz_clear(dp);
         mpz_clear(dq);
+        mpz_clear(pinv);
         mpz_clear(qinv);
     }
     

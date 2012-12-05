@@ -13,9 +13,12 @@
 #import "Helper.h"
 
 @interface DecryptViewController ()
+@property (nonatomic, retain) NSString* decryptedFile;
 @end
 
 @implementation DecryptViewController
+
+@synthesize decryptedFile;
 
 @synthesize rsaKeyPair, fileToDecrypt;
 
@@ -68,13 +71,11 @@
 }
 
 - (void)startFileProcessing
-{
-    [super startFileProcessing];
-    
-    NSString *decryptedFilePath = [[self.fileToDecrypt stringByReplacingOccurrencesOfString:@".rsa-encrypted" withString:@""] stringByAppendingString:@".rsa-decrypted"];
+{    
+    self.decryptedFile = [[self.fileToDecrypt stringByReplacingOccurrencesOfString:@".rsa-encrypted" withString:@""] stringByAppendingString:@".rsa-decrypted"];
     
     [RSAEncryptor decryptFile:[NSURL fileURLWithPath:self.fileToDecrypt]
-                       toFile:[NSURL fileURLWithPath:decryptedFilePath]
+                       toFile:[NSURL fileURLWithPath:self.decryptedFile]
                       withKey:self.rsaKeyPair.privateKey
                      delegate:self];
     
@@ -82,23 +83,28 @@
     [[self view] setSubViewsEnabled:NO];
     
     [self logString:[NSString stringWithFormat:@"Started decrypting %@", self.fileToDecrypt]];
+    
+    self.startTime = [NSDate date];
 }
 
 - (void)rsaEncryptor:(RSAEncryptor *)encryptor percentComplete:(double)percent
 {
-    //TODO: implement
+    [progressIndicator setDoubleValue:percent];
 }
 
 - (void)rsaEncryptorFinishedWorking:(RSAEncryptor *)encryptor
 {
-    [progressIndicator stopAnimation:nil];
-    [[self view] setSubViewsEnabled:YES];
-    
     NSDate* finishTime = [NSDate date];
     NSTimeInterval interval = [finishTime timeIntervalSinceDate:self.startTime];
     
+    [[self view] setSubViewsEnabled:YES];
+    
+    NSData *fileData = [NSData dataWithContentsOfFile:self.decryptedFile];
+    NSString *fileHash = [Helper sha1Hash:fileData];
+    
     [self logString:[NSString stringWithFormat:@"Finished decrypting %@", self.fileToDecrypt]];
     [self logString:[NSString stringWithFormat:@"Decryption took %.3f seconds", interval]];
+    [self logString:[NSString stringWithFormat:@"Decrypted file hash: %@", fileHash]];
 }
 
 @end

@@ -12,7 +12,6 @@
 
 @protocol RSAEncryptorDelegate <NSObject>
 - (void)rsaEncryptorFinishedWorking:(RSAEncryptor*)encryptor;
-@optional
 - (void)rsaEncryptor:(RSAEncryptor*)encryptor percentComplete:(double)percent;
 @end
 
@@ -22,6 +21,8 @@
     NSOutputStream* _outputStream;
     
     int _processingMode;
+    NSUInteger _inputSize;
+    NSUInteger _totalBytesRead;
 }
 
 + (void)encryptFile:(NSURL*)fileToEncrypt toFile:(NSURL*)encryptedFile withKey:(RSAKey*)rsaKey delegate:(NSObject<RSAEncryptorDelegate>*)delegate;

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F90A4C6C166FDDCC00E37316 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90A4C6B166FDDCC00E37316 /* Security.framework */; };
 		F9345285165A58E300A5F90B /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F9345284165A58E300A5F90B /* icon.icns */; };
 		F9345293165A7DC200A5F90B /* RSAEncryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = F9345292165A7DC200A5F90B /* RSAEncryptor.mm */; };
 		F939F074165972A20028CAC3 /* MainWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = F939F072165972A20028CAC3 /* MainWindowController.mm */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F90A4C6B166FDDCC00E37316 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F9345284165A58E300A5F90B /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../icon.icns; sourceTree = "<group>"; };
 		F9345291165A7DC200A5F90B /* RSAEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor.h; sourceTree = "<group>"; };
 		F9345292165A7DC200A5F90B /* RSAEncryptor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RSAEncryptor.mm; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F90A4C6C166FDDCC00E37316 /* Security.framework in Frameworks */,
 				F9ECC9F41657A8ED00D3CC84 /* Cocoa.framework in Frameworks */,
 				F9ECCA161657AA7400D3CC84 /* libgmp.a in Frameworks */,
 				F9ECCA171657AA7400D3CC84 /* libgmpxx.a in Frameworks */,
@@ -170,6 +173,7 @@
 				F9ECC9F61657A8ED00D3CC84 /* AppKit.framework */,
 				F9ECC9F71657A8ED00D3CC84 /* CoreData.framework */,
 				F9ECC9F81657A8ED00D3CC84 /* Foundation.framework */,
+				F90A4C6B166FDDCC00E37316 /* Security.framework */,
 			);
 			name = "Other Frameworks";
 			sourceTree = "<group>";

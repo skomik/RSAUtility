@@ -18,9 +18,14 @@
 - (void)setSubViewsEnabled:(BOOL)enabled;
 @end
 
+@interface NSData (NSDataStrings)
+- (NSString*)stringWithHexBytes;
+@end
+
 @interface Helper : NSObject
 
 + (NSURL*)getWorkingDir;
 + (void)setWorkingDir:(NSURL*)value;
++ (NSString*)sha1Hash:(NSData*)data;
 
 @end

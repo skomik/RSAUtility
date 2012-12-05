@@ -60,6 +60,10 @@
         
         _outputStream = [[NSOutputStream alloc] initWithURL:outputURL append:NO];
         [_outputStream open];
+        
+        //determine input file size
+        NSDictionary* attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[inputURL path] error:nil];
+        _inputSize = [[attributes objectForKey:NSFileSize] integerValue];
     }
     
     return self;
@@ -114,6 +118,10 @@
                 
                 if ([_outputStream hasSpaceAvailable])
                     [_outputStream write:(uint8_t*)outputBytes maxLength:outputLength - paddingOffset];
+                
+                _totalBytesRead += bytesReadCount;
+                if (delegate)
+                    [delegate rsaEncryptor:self percentComplete:(double)_totalBytesRead/_inputSize * 100.0];
             }
             
             break;

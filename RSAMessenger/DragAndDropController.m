@@ -57,7 +57,7 @@
 
 - (void)startFileProcessing
 {
-    self.startTime = [NSDate date];
+    //override this
 }
 
 @end

@@ -47,6 +47,7 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{20, 211}, {269, 20}}</string>
 						<reference key="NSSuperview" ref="1005"/>
+						<reference key="NSNextKeyView" ref="1685755"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSHuggingPriority">{250, 250}</string>
 						<int key="NSpiFlags">24591</int>
@@ -85,7 +86,7 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{240, 252}, {205, 130}}</string>
 						<reference key="NSSuperview" ref="1005"/>
-						<reference key="NSNextKeyView" ref="1685755"/>
+						<reference key="NSNextKeyView" ref="869590147"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSClassName">DropDestinationView</string>
 					</object>
@@ -132,7 +133,7 @@
 											<int key="NSTCFlags">1</int>
 										</object>
 										<object class="NSTextViewSharedData" key="NSSharedData">
-											<int key="NSFlags">67121127</int>
+											<int key="NSFlags">67121125</int>
 											<int key="NSTextCheckingTypes">0</int>
 											<nil key="NSMarkedAttributes"/>
 											<object class="NSColor" key="NSBackgroundColor" id="419930890">
@@ -346,7 +347,6 @@ wGw</bytes>
 								<int key="NSvFlags">256</int>
 								<string key="NSFrame">{{408, 1}, {16, 175}}</string>
 								<reference key="NSSuperview" ref="145931195"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:83</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 								<reference key="NSTarget" ref="145931195"/>
@@ -422,14 +422,6 @@ wGw</bytes>
 					<int key="connectionID">196</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">consoleOutput</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="145931195"/>
-					</object>
-					<int key="connectionID">197</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">startButtonPressed:</string>
 						<reference key="source" ref="1001"/>
@@ -444,6 +436,14 @@ wGw</bytes>
 						<reference key="destination" ref="869590147"/>
 					</object>
 					<int key="connectionID">233</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">consoleOutput</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="310925416"/>
+					</object>
+					<int key="connectionID">234</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -985,7 +985,7 @@ wGw</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">233</int>
+			<int key="maxID">234</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

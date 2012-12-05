@@ -69,6 +69,8 @@
 
 - (void)startFileProcessing
 {
+    [super startFileProcessing];
+    
     NSString *decryptedFilePath = [[self.fileToDecrypt stringByReplacingOccurrencesOfString:@".rsa-encrypted" withString:@""] stringByAppendingString:@".rsa-decrypted"];
     
     [RSAEncryptor decryptFile:[NSURL fileURLWithPath:self.fileToDecrypt]
@@ -78,6 +80,8 @@
     
     [progressIndicator startAnimation:nil];
     [[self view] setSubViewsEnabled:NO];
+    
+    [self logString:[NSString stringWithFormat:@"Started decrypting %@", self.fileToDecrypt]];
 }
 
 - (void)rsaEncryptor:(RSAEncryptor *)encryptor percentComplete:(double)percent
@@ -89,6 +93,12 @@
 {
     [progressIndicator stopAnimation:nil];
     [[self view] setSubViewsEnabled:YES];
+    
+    NSDate* finishTime = [NSDate date];
+    NSTimeInterval interval = [finishTime timeIntervalSinceDate:self.startTime];
+    
+    [self logString:[NSString stringWithFormat:@"Finished decrypting %@", self.fileToDecrypt]];
+    [self logString:[NSString stringWithFormat:@"Decryption took %.3f seconds", interval]];
 }
 
 @end

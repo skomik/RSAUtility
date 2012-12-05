@@ -15,10 +15,13 @@
     IBOutlet DropDestinationView *processedFileDestination;
     
     IBOutlet NSButton *startButton;
-    IBOutlet NSScrollView *consoleOutput;
+    IBOutlet NSTextView *consoleOutput;
     IBOutlet NSProgressIndicator *progressIndicator;
 }
 
+@property (nonatomic, retain) NSDate* startTime;
+
 - (void)startFileProcessing;
+- (void)logString:(NSString*)string;
 
 @end

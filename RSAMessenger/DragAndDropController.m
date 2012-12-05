@@ -14,6 +14,8 @@
 
 @implementation DragAndDropController
 
+@synthesize startTime;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -32,10 +34,15 @@
     [keyFileDestination setDelegate:self];
     [processedFileDestination setDelegate:self];
     
-    //override this
-//    [keyFileDestination setInitialText:@"Drop Key File Here"];
-//    [processedFileDestination setInitialText:@"Drop File To Encrypt Here"];
-//    [startButton setStringValue:@"Start"];
+    NSFont *font = [NSFont fontWithName:@"Helvetica" size:11];
+    [consoleOutput setFont:font];
+}
+
+- (void)logString:(NSString *)string
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm:ss"];
+    [consoleOutput setString:[consoleOutput.string stringByAppendingFormat:@"%@: %@\n", [formatter stringFromDate:[NSDate date]], string]];
 }
 
 - (IBAction)startButtonPressed:(id)sender
@@ -50,7 +57,7 @@
 
 - (void)startFileProcessing
 {
-    //override this
+    self.startTime = [NSDate date];
 }
 
 @end

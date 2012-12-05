@@ -70,6 +70,8 @@
 
 - (void)startFileProcessing
 {
+    [super startFileProcessing];
+    
     NSString *encryptedFilePath = [self.fileToEncrypt stringByAppendingString:@".rsa-encrypted"];
     
     [RSAEncryptor encryptFile:[NSURL fileURLWithPath:self.fileToEncrypt]
@@ -79,6 +81,8 @@
     
     [progressIndicator startAnimation:nil];
     [[self view] setSubViewsEnabled:NO];
+    
+    [self logString:[NSString stringWithFormat:@"Started encrypting %@", self.fileToEncrypt]];
 }
 
 - (void)rsaEncryptor:(RSAEncryptor *)encryptor percentComplete:(double)percent
@@ -90,6 +94,12 @@
 {
     [progressIndicator stopAnimation:nil];
     [[self view] setSubViewsEnabled:YES];
+    
+    NSDate* finishTime = [NSDate date];
+    NSTimeInterval interval = [finishTime timeIntervalSinceDate:self.startTime];
+    
+    [self logString:[NSString stringWithFormat:@"Finished encrypting %@", self.fileToEncrypt]];
+    [self logString:[NSString stringWithFormat:@"Encryption took %.3f seconds", interval]];
 }
 
 @end

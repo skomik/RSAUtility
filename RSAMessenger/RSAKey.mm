@@ -23,7 +23,7 @@ const NSString* kRSAKey_chinese_qinv = @"kRSAKey_chinese_qinv";
 void logNumber(mpz_t number)
 {
     char string[RSA_LENGTH_MAXIMUM];
-    mpz_get_str(string, BASE_16, number);
+    mpz_get_str(string, BASE_10, number);
     printf("%s\n", string);
 }
 
@@ -96,8 +96,6 @@ void logNumber(mpz_t number)
         _dq = new mpz_class([dqStr getSTLString]);
         _pinv= new mpz_class([pinvStr getSTLString]);
         _qinv= new mpz_class([qinvStr getSTLString]);
-        
-        [self logChineseElements];
     }
     
     return self;
@@ -113,25 +111,6 @@ void logNumber(mpz_t number)
     _dq = new mpz_class(dq);
     _pinv = new mpz_class(pinv);
     _qinv = new mpz_class(qinv);
-    
-    [self logChineseElements];
-}
-
-- (void)logChineseElements
-{
-    NSString* pStr = [NSString stringWithSTLString:_p->get_str()];
-    NSString* qStr = [NSString stringWithSTLString:_q->get_str()];
-    NSString* dpStr = [NSString stringWithSTLString:_dp->get_str()];
-    NSString* dqStr = [NSString stringWithSTLString:_dq->get_str()];
-    NSString* pinvStr = [NSString stringWithSTLString:_pinv->get_str()];
-    NSString* qinvStr = [NSString stringWithSTLString:_qinv->get_str()];
-    
-    NSLog(@"p = %@", pStr);
-    NSLog(@"q = %@", qStr);
-    NSLog(@"dp = %@", dpStr);
-    NSLog(@"dq = %@", dqStr);
-    NSLog(@"pinv = %@", pinvStr);
-    NSLog(@"qinv = %@", qinvStr);
 }
 
 - (int)processBytes:(char *)bytesToProcess length:(long)length toBytes:(char *)processedBytes mode:(int)mode
@@ -145,78 +124,41 @@ void logNumber(mpz_t number)
     
     mpz_import(inputNumber, length, 1, sizeof(bytesToProcess[0]), 0, 0, bytesToProcess);
     
-//    if (!supportsChineseRemainder)
-//    {
-        mpz_powm(outputNumber, inputNumber, _key->get_mpz_t(), _magnitude->get_mpz_t());
-    logNumber(outputNumber);
-//    }
-//    else
+    if (!supportsChineseRemainder)
     {
-        // mp = c^dp (mod p)
-        // mq = c^dq (moq q)
-        // m1 = mp * pinv * q
-        // m2 = mq * qinv * q
-        // m  = m1 + m2 (mod n)
+        mpz_powm(outputNumber, inputNumber, _key->get_mpz_t(), _magnitude->get_mpz_t());
+    }
+    else
+    {
+        // m1 = c^dp (mod p)
+        // m2 = c^dq (mod q)
+        // h  = qinv * (m1 - m2) (mod p)
+        // m  = m2 + (h * q)
         
-        mpz_t mp, mq, mp_mul_q, mq_mul_q, m1, m2, m1_plus_m2;
+        mpz_t m1, m2, h, m1_minus_m2, q_m1_m2, h_mul_q;
         
-        mpz_init(mp);
-        mpz_init(mq);
-        mpz_init(mp_mul_q);
-        mpz_init(mq_mul_q);
         mpz_init(m1);
         mpz_init(m2);
-        mpz_init(m1_plus_m2);
+        mpz_init(h);
+        mpz_init(m1_minus_m2);
+        mpz_init(q_m1_m2);
+        mpz_init(h_mul_q);
         
-        mpz_powm(mp, inputNumber, _dp->get_mpz_t(), _p->get_mpz_t());
-        mpz_powm(mq, inputNumber, _dq->get_mpz_t(), _q->get_mpz_t());
-        mpz_mul(mp_mul_q, mp, _q->get_mpz_t());
-        mpz_mul(mq_mul_q, mq, _q->get_mpz_t());
-        mpz_mul(m1, mp_mul_q, _pinv->get_mpz_t());
-        mpz_mul(m2, mq_mul_q, _qinv->get_mpz_t());
-        mpz_add(m1_plus_m2, m1, m2);
-        mpz_tdiv_r(outputNumber, m1_plus_m2, _magnitude->get_mpz_t());
+        mpz_powm(m1, inputNumber, _dp->get_mpz_t(), _p->get_mpz_t());
+        mpz_powm(m2, inputNumber, _dq->get_mpz_t(), _q->get_mpz_t());
+        mpz_sub(m1_minus_m2, m1, m2);
         
-        logNumber(outputNumber);
+        mpz_mul(q_m1_m2, _qinv->get_mpz_t(), m1_minus_m2);
+        mpz_mod(h, q_m1_m2, _p->get_mpz_t());
+        mpz_mul(h_mul_q, h, _q->get_mpz_t());
+        mpz_add(outputNumber, m2, h_mul_q);
         
-        mpz_clear(mp);
-        mpz_clear(mq);
-        mpz_clear(mp_mul_q);
-        mpz_clear(mq_mul_q);
         mpz_clear(m1);
         mpz_clear(m2);
-        mpz_clear(m1_plus_m2);
-        
-//        // wikipedia method not working
-//        // m1 = c^dp (mod p)
-//        // m2 = c^dq (mod q)
-//        // h  = qinv * (m1 - m2) (mod p)
-//        // m  = m2 + (h * q)
-//        
-//        mpz_t m1, m2, h, m1_minus_m2, h_mul_q;
-//        
-//        mpz_init(m1);
-//        mpz_init(m2);
-//        mpz_init(h);
-//        mpz_init(m1_minus_m2);
-//        mpz_init(h_mul_q);
-//        
-//        mpz_powm(m1, inputNumber, _dp->get_mpz_t(), _p->get_mpz_t());
-//        mpz_powm(m2, inputNumber, _dq->get_mpz_t(), _q->get_mpz_t());
-//        mpz_sub(m1_minus_m2, m1, m2);
-//        
-//        if (mpz_cmp(m1, m2) < 0)
-//            mpz_add(m1_minus_m2, m1_minus_m2, _p->get_mpz_t());
-//        
-//        mpz_mul(h, _qinv->get_mpz_t(), m1_minus_m2);
-//        mpz_mul(h_mul_q, h, _q->get_mpz_t());
-//        mpz_add(outputNumber, m2, h_mul_q);
-//        
-//        mpz_clear(m1);
-//        mpz_clear(m2);
-//        mpz_clear(h);
-//        mpz_clear(m1_minus_m2);
-//        mpz_clear(h_mul_q);
+        mpz_clear(h);
+        mpz_clear(m1_minus_m2);
+        mpz_clear(q_m1_m2);
+        mpz_clear(h_mul_q);
     }
     
     

@@ -25,7 +25,7 @@ enum { MODE_ENCRYPT, MODE_DECRYPT };
     mpz_class* _key;
     mpz_class* _magnitude;
     
-    //Chinese remainder alhorithm
+    //Chinese remainder theorem
     BOOL supportsChineseRemainder;
     mpz_class* _p;
     mpz_class* _q;

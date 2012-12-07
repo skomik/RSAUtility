@@ -40,7 +40,7 @@
 
 - (void)logString:(NSString *)string
 {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
     [formatter setDateFormat:@"HH:mm:ss"];
     [consoleOutput setString:[consoleOutput.string stringByAppendingFormat:@"%@: %@\n", [formatter stringFromDate:[NSDate date]], string]];
 }

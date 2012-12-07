@@ -147,7 +147,6 @@ void logNumber(mpz_t number)
         mpz_powm(m1, inputNumber, _dp->get_mpz_t(), _p->get_mpz_t());
         mpz_powm(m2, inputNumber, _dq->get_mpz_t(), _q->get_mpz_t());
         mpz_sub(m1_minus_m2, m1, m2);
-        
         mpz_mul(q_m1_m2, _qinv->get_mpz_t(), m1_minus_m2);
         mpz_mod(h, q_m1_m2, _p->get_mpz_t());
         mpz_mul(h_mul_q, h, _q->get_mpz_t());

@@ -24,11 +24,6 @@ void RSA_generateKeyPair(int length, mpz_t &p, mpz_t &q, mpz_t &e, mpz_t &n, mpz
 {
     int primeSize = length/2;
     
-//    mpz_t p,q;
-//    
-//    mpz_init(p);
-//    mpz_init(q);
-    
     char* p_str = new char[primeSize+1];
     char* q_str = new char[primeSize+1];
     
@@ -123,14 +118,12 @@ void RSA_generateKeyPair(int length, mpz_t &p, mpz_t &q, mpz_t &e, mpz_t &n, mpz
     delete p_str;
     delete q_str;
     
-    //chinese remainder algorithm
+    //chinese remainder theorem
     mpz_invert(pinv, p, q); // pinv = p^-1(mod q)
     mpz_invert(qinv, q, p); // qinv = q^-1(mod p)
     mpz_tdiv_r(dp, d, p_minus_1); // dp = d (mod p - 1)
     mpz_tdiv_r(dq, d, q_minus_1); // dq = d (mod q - 1)
     
-//    mpz_clear(p);
-//    mpz_clear(q);
     mpz_clear(x);
     mpz_clear(p_minus_1);
     mpz_clear(q_minus_1);
@@ -170,7 +163,7 @@ void RSA_generateKeyPair(int length, mpz_t &p, mpz_t &q, mpz_t &e, mpz_t &n, mpz
         mpz_init(n);
         mpz_init(d);
         
-        //chinese remainder algorithm
+        //chinese remainder theorem
         mpz_t dp, dq, pinv, qinv;
         mpz_init(dp);
         mpz_init(dq);

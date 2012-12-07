@@ -161,7 +161,6 @@ void logNumber(mpz_t number)
         mpz_clear(h_mul_q);
     }
     
-    
     int maxLength = encrypting ? [self getBlockSize] : [self getBlockEncryptedBytesCount];
     int exportLength = (mpz_sizeinbase(outputNumber, BASE_2) + 8 - 1)/8;
     int offset = maxLength - exportLength;

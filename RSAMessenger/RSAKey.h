@@ -24,11 +24,22 @@ enum { MODE_ENCRYPT, MODE_DECRYPT };
     
     mpz_class* _key;
     mpz_class* _magnitude;
+    
+    //Chinese remainder alhorithm
+    BOOL supportsChineseRemainder;
+    mpz_class* _p;
+    mpz_class* _q;
+    mpz_class* _dp;
+    mpz_class* _dq;
+    mpz_class* _pinv;
+    mpz_class* _qinv;
 }
 
 - (id)initWithCoder:(NSCoder*)coder;
 - (id)initWithGMPKey:(mpz_t)key magnitude:(mpz_t)magnitude andLength:(int)length;
 - (id)initWithKey:(NSString*)key magnitude:(NSString*)magnitude andLength:(int)length;
+
+- (void)setChineseRemainder_p:(mpz_t)p q:(mpz_t)q dp:(mpz_t)dp dq:(mpz_t)dq pinv:(mpz_t)pinv qinv:(mpz_t)qinv;
 
 - (int)getBitLength; //key length in bits (1024 default)
 - (int)getBlockSize; //block size in bytes

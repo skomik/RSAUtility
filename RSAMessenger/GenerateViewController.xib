@@ -181,7 +181,7 @@
 					<object class="NSTextField" id="1072651466">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{46, 166}, {78, 17}}</string>
+						<string key="NSFrame">{{10, 166}, {114, 17}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="355651240"/>
@@ -190,7 +190,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="1041553722">
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents">Private Key:</string>
+							<string key="NSContents">Private Exponent:</string>
 							<reference key="NSSupport" ref="758604774"/>
 							<string key="NSCellIdentifier">_NS:1535</string>
 							<reference key="NSControlView" ref="1072651466"/>
@@ -257,7 +257,7 @@
 					<object class="NSTextField" id="463306965">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{51, 289}, {73, 17}}</string>
+						<string key="NSFrame">{{62, 289}, {62, 17}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="560205130"/>
@@ -266,7 +266,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="405100418">
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents">Public Key:</string>
+							<string key="NSContents">Modulus:</string>
 							<reference key="NSSupport" ref="758604774"/>
 							<string key="NSCellIdentifier">_NS:1535</string>
 							<reference key="NSControlView" ref="463306965"/>
@@ -439,7 +439,7 @@
 							<object class="NSFont" key="NSSupport">
 								<string key="NSName">LucidaGrande</string>
 								<double key="NSSize">12</double>
-								<int key="NSfFlags">4883</int>
+								<int key="NSfFlags">16</int>
 							</object>
 							<string key="NSCellIdentifier">_NS:9</string>
 							<reference key="NSControlView" ref="340930593"/>
@@ -635,10 +635,8 @@
 							<reference ref="56467628"/>
 							<reference ref="518065537"/>
 							<reference ref="648519586"/>
-							<reference ref="463306965"/>
 							<reference ref="560205130"/>
 							<reference ref="355651240"/>
-							<reference ref="1072651466"/>
 							<reference ref="340930593"/>
 							<reference ref="1053260171"/>
 							<reference ref="773344147"/>
@@ -646,6 +644,8 @@
 							<reference ref="842035307"/>
 							<reference ref="397487826"/>
 							<reference ref="1010128223"/>
+							<reference ref="463306965"/>
+							<reference ref="1072651466"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

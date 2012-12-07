@@ -71,7 +71,9 @@
 }
 
 - (void)startFileProcessing
-{    
+{
+    [progressIndicator setDoubleValue:0.0];
+    
     self.decryptedFile = [[self.fileToDecrypt stringByReplacingOccurrencesOfString:@".rsa-encrypted" withString:@""] stringByAppendingString:@".rsa-decrypted"];
     
     [RSAEncryptor decryptFile:[NSURL fileURLWithPath:self.fileToDecrypt]

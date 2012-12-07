@@ -70,6 +70,8 @@
 
 - (void)startFileProcessing
 {    
+    [progressIndicator setDoubleValue:0.0];
+    
     NSString *encryptedFilePath = [self.fileToEncrypt stringByAppendingString:@".rsa-encrypted"];
     
     [RSAEncryptor encryptFile:[NSURL fileURLWithPath:self.fileToEncrypt]

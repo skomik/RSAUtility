@@ -38,7 +38,7 @@ enum { MODE_ENCRYPT, MODE_DECRYPT };
 - (id)initWithGMPKey:(mpz_t)key magnitude:(mpz_t)magnitude andLength:(int)length;
 - (id)initWithKey:(NSString*)key magnitude:(NSString*)magnitude andLength:(int)length;
 
-- (void)setChineseRemainder_p:(mpz_t)p q:(mpz_t)q dp:(mpz_t)dp dq:(mpz_t)dq pinv:(mpz_t)pinv qinv:(mpz_t)qinv;
+- (void)setChineseRemainder_p:(mpz_t)p q:(mpz_t)q dp:(mpz_t)dp dq:(mpz_t)dq qinv:(mpz_t)qinv;
 
 - (int)getBitLength; //key length in bits (1024 default)
 - (int)getBlockSize; //block size in bytes

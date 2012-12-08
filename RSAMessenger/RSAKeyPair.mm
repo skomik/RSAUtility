@@ -20,7 +20,7 @@ void RSA_initRandom()
     srand((unsigned)time_elapsed);
 }
 
-void RSA_generateKeyPair(int length, mpz_t &p, mpz_t &q, mpz_t &e, mpz_t &n, mpz_t &d, mpz_t &dp, mpz_t &dq, mpz_t &pinv, mpz_t &qinv)
+void RSA_generateKeyPair(int length, mpz_t &p, mpz_t &q, mpz_t &e, mpz_t &n, mpz_t &d, mpz_t &dp, mpz_t &dq, mpz_t &qinv)
 {
     int primeSize = length/2;
     
@@ -110,7 +110,7 @@ void RSA_generateKeyPair(int length, mpz_t &p, mpz_t &q, mpz_t &e, mpz_t &n, mpz
     {
         printf("\nOOPS : Could not find multiplicative inverse!\n");
         printf("\nTrying again...");
-        RSA_generateKeyPair(length, p, q, e, n, d, dp, dq, pinv, qinv);
+        RSA_generateKeyPair(length, p, q, e, n, d, dp, dq, qinv);
     }
     
     mpz_get_str(d_str,BASE_10,d);
@@ -119,7 +119,6 @@ void RSA_generateKeyPair(int length, mpz_t &p, mpz_t &q, mpz_t &e, mpz_t &n, mpz
     delete q_str;
     
     //chinese remainder theorem
-    mpz_invert(pinv, p, q); // pinv = p^-1(mod q)
     mpz_invert(qinv, q, p); // qinv = q^-1(mod p)
     mpz_tdiv_r(dp, d, p_minus_1); // dp = d (mod p - 1)
     mpz_tdiv_r(dq, d, q_minus_1); // dq = d (mod q - 1)
@@ -164,18 +163,17 @@ void RSA_generateKeyPair(int length, mpz_t &p, mpz_t &q, mpz_t &e, mpz_t &n, mpz
         mpz_init(d);
         
         //chinese remainder theorem
-        mpz_t dp, dq, pinv, qinv;
+        mpz_t dp, dq, qinv;
         mpz_init(dp);
         mpz_init(dq);
-        mpz_init(pinv);
         mpz_init(qinv);
         
         RSA_initRandom();
-        RSA_generateKeyPair(_bitLength, p, q, e, n, d, dp, dq, pinv, qinv);
+        RSA_generateKeyPair(_bitLength, p, q, e, n, d, dp, dq, qinv);
         
         _publicKey = [[RSAKey alloc] initWithGMPKey:e magnitude:n andLength:length];
         _privateKey = [[RSAKey alloc] initWithGMPKey:d magnitude:n andLength:length];
-        [_privateKey setChineseRemainder_p:p q:q dp:dp dq:dq pinv:pinv qinv:qinv];
+        [_privateKey setChineseRemainder_p:p q:q dp:dp dq:dq qinv:qinv];
         
         mpz_clear(p);
         mpz_clear(q);
@@ -185,7 +183,6 @@ void RSA_generateKeyPair(int length, mpz_t &p, mpz_t &q, mpz_t &e, mpz_t &n, mpz
         
         mpz_clear(dp);
         mpz_clear(dq);
-        mpz_clear(pinv);
         mpz_clear(qinv);
     }
     

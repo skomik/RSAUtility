@@ -97,7 +97,7 @@ void logNumber(mpz_t number)
     return self;
 }
 
-- (void)setChineseRemainder_p:(mpz_t)p q:(mpz_t)q dp:(mpz_t)dp dq:(mpz_t)dq pinv:(mpz_t)pinv qinv:(mpz_t)qinv
+- (void)setChineseRemainder_p:(mpz_t)p q:(mpz_t)q dp:(mpz_t)dp dq:(mpz_t)dq qinv:(mpz_t)qinv
 {
     supportsChineseRemainder = YES;
     
@@ -217,7 +217,7 @@ void logNumber(mpz_t number)
 
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"%@\n\tkey = %@\n\tmagnitude = %@",
+    return [NSString stringWithFormat:@"%@\n\tkey = %@\n\tmodulus = %@",
             [super description],
             [NSString stringWithSTLString:_key->get_str()],
             [NSString stringWithSTLString:_magnitude->get_str()]];

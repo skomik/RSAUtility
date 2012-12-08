@@ -31,7 +31,6 @@ enum { MODE_ENCRYPT, MODE_DECRYPT };
     mpz_class* _q;
     mpz_class* _dp;
     mpz_class* _dq;
-    mpz_class* _pinv;
     mpz_class* _qinv;
 }
 

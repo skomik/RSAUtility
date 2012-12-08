@@ -17,7 +17,6 @@ const NSString* kRSAKey_chinese_p = @"kRSAKey_chinese_p";
 const NSString* kRSAKey_chinese_q = @"kRSAKey_chinese_q";
 const NSString* kRSAKey_chinese_dp = @"kRSAKey_chinese_dp";
 const NSString* kRSAKey_chinese_dq = @"kRSAKey_chinese_dq";
-const NSString* kRSAKey_chinese_pinv = @"kRSAKey_chinese_qpinv";
 const NSString* kRSAKey_chinese_qinv = @"kRSAKey_chinese_qinv";
 
 void logNumber(mpz_t number)
@@ -40,7 +39,6 @@ void logNumber(mpz_t number)
         delete _q;
         delete _dp;
         delete _dq;
-        delete _pinv;
         delete _qinv;
     }
     
@@ -83,10 +81,9 @@ void logNumber(mpz_t number)
     NSString* qStr = [coder decodeObjectForKey:(NSString*)kRSAKey_chinese_q];
     NSString* dpStr = [coder decodeObjectForKey:(NSString*)kRSAKey_chinese_dp];
     NSString* dqStr = [coder decodeObjectForKey:(NSString*)kRSAKey_chinese_dq];
-    NSString* pinvStr = [coder decodeObjectForKey:(NSString*)kRSAKey_chinese_pinv];
     NSString* qinvStr = [coder decodeObjectForKey:(NSString*)kRSAKey_chinese_qinv];
     
-    if (dpStr && dqStr && pinvStr && qinvStr)
+    if (pStr && qStr && dpStr && dqStr && qinvStr)
     {
         supportsChineseRemainder = YES;
         
@@ -94,7 +91,6 @@ void logNumber(mpz_t number)
         _q = new mpz_class([qStr getSTLString]);
         _dp = new mpz_class([dpStr getSTLString]);
         _dq = new mpz_class([dqStr getSTLString]);
-        _pinv= new mpz_class([pinvStr getSTLString]);
         _qinv= new mpz_class([qinvStr getSTLString]);
     }
     
@@ -109,7 +105,6 @@ void logNumber(mpz_t number)
     _q = new mpz_class(q);
     _dp = new mpz_class(dp);
     _dq = new mpz_class(dq);
-    _pinv = new mpz_class(pinv);
     _qinv = new mpz_class(qinv);
 }
 
@@ -186,7 +181,6 @@ void logNumber(mpz_t number)
         [coder encodeObject:[NSString stringWithSTLString:_q->get_str()] forKey:(NSString*)kRSAKey_chinese_q];
         [coder encodeObject:[NSString stringWithSTLString:_dp->get_str()] forKey:(NSString*)kRSAKey_chinese_dp];
         [coder encodeObject:[NSString stringWithSTLString:_dq->get_str()] forKey:(NSString*)kRSAKey_chinese_dq];
-        [coder encodeObject:[NSString stringWithSTLString:_pinv->get_str()] forKey:(NSString*)kRSAKey_chinese_pinv];
         [coder encodeObject:[NSString stringWithSTLString:_qinv->get_str()] forKey:(NSString*)kRSAKey_chinese_qinv];
     }
 }

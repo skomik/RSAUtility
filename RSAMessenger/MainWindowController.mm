@@ -49,7 +49,6 @@ enum { TAB_GENERATE, TAB_ENCRYPT, TAB_DECRYPT };
     self.encryptViewController = [[[EncryptViewController alloc] initWithNibName:@"DragAndDropController" bundle:[NSBundle mainBundle]] autorelease];
     self.decryptViewController = [[[DecryptViewController alloc] initWithNibName:@"DragAndDropController" bundle:[NSBundle mainBundle]] autorelease];
     self.generateViewController = [[[GenerateViewController alloc] initWithNibName:@"GenerateViewController" bundle:[NSBundle mainBundle]] autorelease];
-    self.dragAndDropController = [[[DragAndDropController alloc] initWithNibName:@"DragAndDropController" bundle:[NSBundle mainBundle]] autorelease];
     
     NSTabViewItem *item = [tabView tabViewItemAtIndex:TAB_GENERATE];
     [item setView:[self.generateViewController view]];
@@ -59,9 +58,6 @@ enum { TAB_GENERATE, TAB_ENCRYPT, TAB_DECRYPT };
     
     item = [tabView tabViewItemAtIndex:TAB_DECRYPT];
     [item setView:[self.decryptViewController view]];
-    
-    item = [tabView tabViewItemAtIndex:3];
-    [item setView:[self.dragAndDropController view]];
 }
 
 @end

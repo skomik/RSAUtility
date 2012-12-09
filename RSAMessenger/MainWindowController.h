@@ -11,7 +11,6 @@
 @class GenerateViewController;
 @class EncryptViewController;
 @class DecryptViewController;
-@class DragAndDropController;
 
 @interface MainWindowController : NSWindowController
 {
@@ -21,7 +20,6 @@
 @property (nonatomic, retain) EncryptViewController* encryptViewController;
 @property (nonatomic, retain) DecryptViewController* decryptViewController;
 @property (nonatomic, retain) GenerateViewController* generateViewController;
-@property (nonatomic, retain) DragAndDropController* dragAndDropController;
 
 + (void)showErrorAlert:(NSString*)message;
 
